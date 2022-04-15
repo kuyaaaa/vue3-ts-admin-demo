@@ -28,10 +28,11 @@ const count = ref(0);
     <p>
         Edit
         <code>components/HelloWorld.vue</code> to test hot module replacement.
+        <span class="scss-test">hello sass!</span>
     </p>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 a {
     color: #42b983;
 }
@@ -46,5 +47,12 @@ code {
     padding: 2px 4px;
     border-radius: 4px;
     color: #304455;
+}
+
+p {
+    .scss-test {
+        color: red;
+        font-weight: bold;
+    }
 }
 </style>
