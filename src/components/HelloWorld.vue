@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
+import { NButton } from "naive-ui";
 import useLoginStore from "../store/modules/login";
 
 const loginStore = useLoginStore();
@@ -42,6 +43,7 @@ const count = ref(0);
         <code>components/HelloWorld.vue</code> to test hot module replacement.
         <span class="scss-test">hello sass!</span>
     </p>
+    <n-button>naive-ui</n-button>
     <p>{{ userName }}</p>
 </template>
 
