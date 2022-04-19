@@ -1,5 +1,17 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { storeToRefs } from "pinia";
+import useLoginStore from "../store/modules/login";
+
+const loginStore = useLoginStore();
+const { userName } = storeToRefs(loginStore);
+
+loginStore.userName = "爷傲丶奈我何";
+
+loginStore.$patch({
+    userName: "爷傲奈我何",
+    userId: 2,
+});
 
 defineProps<{ msg: string }>();
 
@@ -30,6 +42,7 @@ const count = ref(0);
         <code>components/HelloWorld.vue</code> to test hot module replacement.
         <span class="scss-test">hello sass!</span>
     </p>
+    <p>{{ userName }}</p>
 </template>
 
 <style lang="scss" scoped>

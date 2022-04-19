@@ -20,7 +20,11 @@ module.exports = {
     plugins: ["prettier"],
     rules: {
         "prettier/prettier": "error",
-        "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
         "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+        "no-console": "off",
+        "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
+        "import/extensions": [2, "never", { "web.js": "never", json: "never", vue: "never" }],
+        "import/no-unresolved": "off",
+        "import/prefer-default-export": "off",
     },
 };
