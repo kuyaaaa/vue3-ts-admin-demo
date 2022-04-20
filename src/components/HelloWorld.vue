@@ -2,7 +2,8 @@
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import { NButton } from "naive-ui";
-import useLoginStore from "../store/modules/login";
+import { useRouter, useRoute } from "vue-router";
+import useLoginStore from "@/store/modules/login";
 
 const loginStore = useLoginStore();
 const { userName } = storeToRefs(loginStore);
@@ -17,6 +18,14 @@ loginStore.$patch({
 defineProps<{ msg: string }>();
 
 const count = ref(0);
+
+const router = useRouter();
+const route = useRoute();
+
+const toAbout = async () => {
+    await router.push({ path: "/about", query: { id: 1 } });
+    console.log(route.query);
+};
 </script>
 
 <template>
@@ -43,7 +52,8 @@ const count = ref(0);
         <code>components/HelloWorld.vue</code> to test hot module replacement.
         <span class="scss-test">hello sass!</span>
     </p>
-    <n-button>naive-ui</n-button>
+    <n-button @click="toAbout">to about</n-button>
+    <n-button @click="router.push('/')">to home</n-button>
     <p>{{ userName }}</p>
 </template>
 

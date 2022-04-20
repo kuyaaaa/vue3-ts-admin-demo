@@ -23,8 +23,9 @@ module.exports = {
         "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
         "no-console": "off",
         "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
-        "import/extensions": [2, "never", { "web.js": "never", json: "never", vue: "never" }],
+        "import/extensions": [2, "never", { "web.js": "never", json: "never", vue: "off" }],
         "import/no-unresolved": "off",
         "import/prefer-default-export": "off",
+        "vue/multi-word-component-names": "off",
     },
 };
