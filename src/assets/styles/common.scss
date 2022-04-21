@@ -1,0 +1,40 @@
+/** 通用样式 */
+
+/** ============================ 阴影&边框相关 ============================ */
+// 基础投影
+@mixin box-shadow-base {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+}
+
+// 浅色投影
+@mixin box-shadow-light {
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+/** ============================ 对齐相关 ============================ */
+// flex main轴居中
+@mixin flex-center-main {
+    display: flex;
+    align-items: center;
+}
+
+// flex cross轴居中
+@mixin flex-center-cross {
+    display: flex;
+    justify-content: center;
+}
+
+// flex水平垂直居中
+@mixin flex-center-main-cross {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// position定位水平垂直居中
+@mixin position-center-row-col {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

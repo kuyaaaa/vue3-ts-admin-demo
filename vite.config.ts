@@ -13,4 +13,13 @@ export default defineConfig({
             "@": path.resolve(__dirname, "src"),
         },
     },
+    css: {
+        // css预处理器
+        preprocessorOptions: {
+            scss: {
+                charset: false,
+                additionalData: '@import "./src/assets/styles/common.scss";',
+            },
+        },
+    },
 });
