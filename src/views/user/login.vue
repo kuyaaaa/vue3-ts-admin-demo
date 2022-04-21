@@ -1,13 +1,13 @@
 <template>
     <div class="container">
         <n-card class="card-container">
-            <h1 class="title">this is login</h1>
+            <n-h1 class="title">this is login</n-h1>
         </n-card>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { NCard } from "naive-ui";
+import { NCard, NH1 } from "naive-ui";
 </script>
 
 <style lang="scss" scoped>
