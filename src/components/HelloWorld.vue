@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { storeToRefs } from "pinia";
-import { NButton } from "naive-ui";
+import { NButton, useMessage } from "naive-ui";
 import { useRouter, useRoute } from "vue-router";
 import useLoginStore from "@/store/modules/login";
+import http from "@/utils/request";
 
 const loginStore = useLoginStore();
 const { userName } = storeToRefs(loginStore);
@@ -26,6 +27,12 @@ const toAbout = async () => {
     await router.push({ path: "/about", query: { id: 1 } });
     console.log(route.query);
 };
+
+window.$message = useMessage();
+
+onMounted(() => {
+    http.get("/test");
+});
 </script>
 
 <template>

@@ -3,11 +3,12 @@
     "private": true,
     "version": "0.0.0",
     "scripts": {
-        "dev": "vite",
-        "build": "vue-tsc --noEmit && vite build",
+        "dev": "vite --mode=development",
+        "build": "vue-tsc --noEmit && vite build --mode=production",
         "preview": "vite preview"
     },
     "dependencies": {
+        "axios": "^0.26.1",
         "naive-ui": "^2.28.0",
         "pinia": "^2.0.13",
         "vfonts": "^0.0.3",
