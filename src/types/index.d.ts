@@ -1,7 +1,11 @@
-import { MessageApiInjection } from "naive-ui/lib/message/src/MessageProvider";
+import type { AxiosInstance } from "axios";
+import type { MessageApiInjection } from "naive-ui/lib/message/src/MessageProvider";
+import type { Router } from "vue-router";
 
 declare global {
     interface Window {
         $message: MessageApiInjection;
+        $http: AxiosInstance;
+        $router: Router;
     }
 }

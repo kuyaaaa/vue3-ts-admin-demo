@@ -28,17 +28,13 @@ service.interceptors.response.use(
         const code = response.status;
         if (code !== 200) {
             // todo
-            window.$message.error(res.message || res.msg, {
-                duration: 5 * 1000,
-            });
+            window.$message.error(res.message || res.msg);
             return Promise.reject(new Error(res.message || res.msg || "网络请求错误"));
         }
         return response.data;
     },
     error => {
-        window.$message.error(error.message || error.msg || "网络请求未知错误", {
-            duration: 5 * 1000,
-        });
+        window.$message.error(error.message || error.msg || "网络请求未知错误");
         return Promise.reject(error);
     }
 );

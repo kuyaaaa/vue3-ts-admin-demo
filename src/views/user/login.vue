@@ -48,9 +48,11 @@ import { NCard, NH1, NForm, NFormItem, NInput, NIcon, NButton } from "naive-ui";
 import type { FormInst } from "naive-ui";
 import { Person, LockClosed, LogIn as loginIcon } from "@vicons/ionicons5";
 import { ref } from "vue";
+import { LoginParams } from "@/types/user";
+import useLoginStore from "@/store/modules/login";
 
 const formRef = ref<FormInst | null>(null);
-const formValue = ref({
+const formValue = ref<LoginParams>({
     userName: "",
     password: "",
 });
@@ -62,12 +64,14 @@ const rules = ref({
     },
     password: { required: true, message: "请输入密码", trigger: "blur" },
 });
+
+const loginStore = useLoginStore();
+
 const handleLogin = (e: MouseEvent) => {
     e.preventDefault();
     formRef.value?.validate(errors => {
         if (!errors) {
-            // todo login
-            console.log("ok");
+            loginStore.login(formValue.value);
         }
     });
 };

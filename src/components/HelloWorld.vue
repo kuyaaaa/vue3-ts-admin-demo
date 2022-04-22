@@ -1,67 +1,42 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { storeToRefs } from "pinia";
-import { NButton, useMessage } from "naive-ui";
-import { useRouter, useRoute } from "vue-router";
-import useLoginStore from "@/store/modules/login";
-import http from "@/utils/request";
+// import { onMounted, ref } from "vue";
+// import { storeToRefs } from "pinia";
+// import { NButton, useMessage } from "naive-ui";
+// import { useRouter, useRoute } from "vue-router";
+// import useLoginStore from "@/store/modules/login";
+// import http from "@/utils/request";
 
-const loginStore = useLoginStore();
-const { userName } = storeToRefs(loginStore);
+// const loginStore = useLoginStore();
+// const { userName } = storeToRefs(loginStore);
 
-loginStore.userName = "爷傲丶奈我何";
+// loginStore.userName = "爷傲丶奈我何";
 
-loginStore.$patch({
-    userName: "爷傲奈我何",
-    userId: 2,
-});
+// loginStore.$patch({
+//     userName: "爷傲奈我何",
+//     userId: 2,
+// });
 
-defineProps<{ msg: string }>();
+// defineProps<{ msg: string }>();
 
-const count = ref(0);
+// const count = ref(0);
 
-const router = useRouter();
-const route = useRoute();
+// const router = useRouter();
+// const route = useRoute();
 
-const toAbout = async () => {
-    await router.push({ path: "/about", query: { id: 1 } });
-    console.log(route.query);
-};
+// const toAbout = async () => {
+//     await router.push({ path: "/about", query: { id: 1 } });
+//     console.log(route.query);
+// };
 
-window.$message = useMessage();
+// window.$message = useMessage();
 
-onMounted(() => {
-    http.get("/test");
-});
+// onMounted(() => {
+//     http.get("/test");
+// });
 </script>
 
 <template>
-    <h1>{{ msg }}</h1>
-
-    <p>
-        Recommended IDE setup:
-        <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
-        +
-        <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-    </p>
-
-    <p>See <code>README.md</code> for more information.</p>
-
-    <p>
-        <a href="https://vitejs.dev/guide/features.html" target="_blank"> Vite Docs </a>
-        |
-        <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Docs</a>
-    </p>
-
-    <button type="button" @click="count++">count is: {{ count }}</button>
-    <p>
-        Edit
-        <code>components/HelloWorld.vue</code> to test hot module replacement.
-        <span class="scss-test">hello sass!</span>
-    </p>
-    <n-button @click="toAbout">to about</n-button>
-    <n-button @click="router.push('/')">to home</n-button>
-    <p>{{ userName }}</p>
+    <div></div>
 </template>
 
 <style lang="scss" scoped>

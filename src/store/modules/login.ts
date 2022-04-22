@@ -1,20 +1,29 @@
 import { defineStore } from "pinia";
+import { LoginParams } from "@/types/user";
 
 const useLoginStore = defineStore({
-    id: "login", // id必填，且需要唯一
+    id: "login",
     state: () => {
         return {
-            userName: "xxx",
-            userId: 1,
+            token: "",
         };
     },
     // actions 用来修改 state
     actions: {
-        login(userName: string) {
-            this.userName = userName;
+        /** 登录
+         * @param   params  登录参数（用户名 & 密码）
+         */
+        async login(params: LoginParams) {
+            const res = await window.$http.post("/login", params);
+            this.token = res.data.token;
+            window.localStorage.setItem("token", this.token);
+            const { redirect = "/" } = window.$router.currentRoute.value.query;
+            window.$router.push(redirect as string);
         },
+        /** 登出 */
         logout() {
-            this.userName = "已退出登录";
+            this.token = "";
+            window.localStorage.removeItem("token");
         },
     },
 });
