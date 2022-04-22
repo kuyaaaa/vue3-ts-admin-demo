@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Layout from "@/layout/index.vue";
 import Login from "@/views/user/login.vue";
+import Error404 from "@/views/errors/404.vue";
+import Error403 from "@/views/errors/403.vue";
 
 const routes: RouteRecordRaw[] = [
     {
@@ -9,9 +11,24 @@ const routes: RouteRecordRaw[] = [
         component: Layout,
     },
     {
+        path: "/:pathMatch(.*)",
+        redirect: "/404",
+        component: Error404,
+    },
+    {
         path: "/login",
         name: "Login",
         component: Login,
+    },
+    {
+        path: "/404",
+        name: "Error404",
+        component: Error404,
+    },
+    {
+        path: "/403",
+        name: "Error403",
+        component: Error403,
     },
     {
         path: "/about",
