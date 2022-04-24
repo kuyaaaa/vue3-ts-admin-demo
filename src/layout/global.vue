@@ -4,9 +4,10 @@
 </template>
 
 <script lang="ts" setup>
-import { useMessage } from "naive-ui";
+import { useDialog, useMessage } from "naive-ui";
 
 window.$message = useMessage();
+window.$dialog = useDialog();
 </script>
 
 <style lang="scss" scoped></style>
