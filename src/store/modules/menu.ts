@@ -1,6 +1,7 @@
 // 菜单列表
 import { defineStore } from "pinia";
-import type { RouteRecordRaw } from "vue-router";
+import type { RouteRecordName, RouteRecordRaw } from "vue-router";
+import { RouterLink } from "vue-router";
 import type { MenuOption } from "naive-ui";
 import { h, Component } from "vue";
 import { NIcon } from "naive-ui";
@@ -20,6 +21,15 @@ const renderIcon = (icon: Component | undefined) => {
     return icon ? () => h(NIcon, null, { default: () => h(icon) }) : undefined;
 };
 
+/**
+ * 渲染router-link组件方法
+ * @param   name    对应routes的跳转name
+ * @param   label   菜单名称
+ */
+const renderRouterLink = (name: RouteRecordName | undefined, label?: string) => {
+    return h(RouterLink, { to: { name } }, { default: () => label });
+};
+
 // 递归创建菜单列表
 const handleRoutesChildren = (list: RouteRecordRaw[]) => {
     const finalList: any[] = [];
@@ -30,7 +40,7 @@ const handleRoutesChildren = (list: RouteRecordRaw[]) => {
             /** 最终处理后所需要的菜单一级子元素 */
             const finalChild: MenuOption = {
                 key: String(name),
-                label: meta?.label,
+                label: item.children ? meta?.label : () => renderRouterLink(name, meta?.label),
                 disabled: meta?.disabled,
                 icon: renderIcon(meta?.icon),
             };
@@ -65,7 +75,7 @@ const useMenuStore = defineStore<"menu", MenuStoreState, {}, MenuStoreActions>({
                 const { meta, name } = homeRoute;
                 menuList.push({
                     key: String(name),
-                    label: meta?.label,
+                    label: () => renderRouterLink(name, meta?.label),
                     icon: renderIcon(meta?.icon ? meta.icon : HomeIcon),
                 });
             }

@@ -40,7 +40,7 @@ const testRoutes: RouteRecordRaw[] = [
                         path: "2-1",
                         name: "test2-2-1",
                         meta: { label: "2-1" },
-                        component: () => import("@/views/test2-1.vue"),
+                        component: () => import("@/views/test/test2-1.vue"),
                     },
                     {
                         path: "2-2",
@@ -52,7 +52,7 @@ const testRoutes: RouteRecordRaw[] = [
                                 path: "2-2-1",
                                 name: "test2-2-2-1",
                                 meta: { label: "2-2-1" },
-                                component: () => import("@/views/test2-2-1.vue"),
+                                component: () => import("@/views/test/test2-2-1.vue"),
                             },
                         ],
                     },
@@ -60,11 +60,20 @@ const testRoutes: RouteRecordRaw[] = [
                         path: "2-3",
                         name: "test2-2-3",
                         meta: { label: "2-3" },
-                        component: () => import("@/views/test2-3.vue"),
+                        component: () => import("@/views/test/test2-3.vue"),
                     },
                 ],
             },
         ],
+    },
+    {
+        path: "/test3",
+        name: "test3",
+        component: () => import("@/views/test/test1.vue"),
+        meta: {
+            label: "测试3",
+            icon: AlbumsOutlineIcon,
+        },
     },
 ];
 
