@@ -4,9 +4,7 @@
         <n-layout-header class="layout-header" bordered></n-layout-header>
         <n-layout class="layout-main-container" has-sider>
             <!-- 侧栏 -->
-            <n-layout-sider :native-scrollbar="false" class="layout-sider" bordered>
-                <menu-content />
-            </n-layout-sider>
+            <sider-content />
             <!-- 主内容 -->
             <n-layout :native-scrollbar="false" embedded class="layout-main">
                 <router-view />
@@ -16,8 +14,8 @@
 </template>
 
 <script lang="ts" setup>
-import { NLayout, NLayoutSider, NLayoutHeader } from "naive-ui";
-import MenuContent from "./content/menu.vue";
+import { NLayout, NLayoutHeader } from "naive-ui";
+import SiderContent from "./content/sider.vue";
 </script>
 
 <style lang="scss" scoped>
@@ -28,10 +26,6 @@ import MenuContent from "./content/menu.vue";
 .layout-header {
     height: 60px;
     padding: 0 15px;
-}
-
-.layout-sider {
-    width: 300px;
 }
 
 .layout-main-container {
