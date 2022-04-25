@@ -1,14 +1,25 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { HomeOutline as HomeOutlineIcon } from "@vicons/ionicons5";
 import Layout from "@/layout/index.vue";
 import Login from "@/views/user/login.vue";
 import Error404 from "@/views/errors/404.vue";
 import Error403 from "@/views/errors/403.vue";
+import testRoutes from "./modules/test";
 
-const routes: RouteRecordRaw[] = [
+export const routes: RouteRecordRaw[] = [
     {
         path: "/",
-        name: "Home",
+        name: "Index",
+        redirect: "/home",
         component: Layout,
+        children: [
+            {
+                path: "home",
+                name: "Home",
+                meta: { label: "主页", icon: HomeOutlineIcon },
+                component: () => import("@/views/home.vue"),
+            },
+        ],
     },
     {
         path: "/:pathMatch(.*)",
@@ -30,14 +41,7 @@ const routes: RouteRecordRaw[] = [
         name: "Error403",
         component: Error403,
     },
-    {
-        path: "/about",
-        name: "About",
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ "@/views/about.vue"),
-    },
+    ...testRoutes,
 ];
 
 const router = createRouter({

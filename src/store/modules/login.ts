@@ -8,7 +8,6 @@ const useLoginStore = defineStore({
             token: "",
         };
     },
-    // actions 用来修改 state
     actions: {
         /** 登录
          * @param   params  登录参数（用户名 & 密码）
