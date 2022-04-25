@@ -56,6 +56,11 @@ const handleRoutesChildren = (list: RouteRecordRaw[]) => {
     return finalList;
 };
 
+/**
+ * 菜单信息仓库
+ * @state       list:菜单列表，用于naive的menu
+ * @actions     createMenuList:根据routes创建菜单列表
+ */
 const useMenuStore = defineStore<"menu", MenuStoreState, {}, MenuStoreActions>({
     id: "menu",
     state: () => {
