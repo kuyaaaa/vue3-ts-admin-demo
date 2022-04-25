@@ -24,21 +24,25 @@ export const routes: RouteRecordRaw[] = [
     {
         path: "/:pathMatch(.*)",
         redirect: "/404",
+        meta: { hidden: true },
         component: Error404,
     },
     {
         path: "/login",
         name: "Login",
+        meta: { hidden: true },
         component: Login,
     },
     {
         path: "/404",
         name: "Error404",
+        meta: { hidden: true },
         component: Error404,
     },
     {
         path: "/403",
         name: "Error403",
+        meta: { hidden: true },
         component: Error403,
     },
     ...testRoutes,

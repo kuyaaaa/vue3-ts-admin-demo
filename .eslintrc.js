@@ -22,6 +22,7 @@ module.exports = {
         "prettier/prettier": "error",
         "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
         "no-console": "off",
+        "no-else-return": "off",
         "no-unused-vars": ["warn", { varsIgnorePattern: "Window" }],
         "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
         "import/extensions": [2, "never", { "web.js": "never", json: "never", vue: "off" }],
