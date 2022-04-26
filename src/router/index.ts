@@ -5,17 +5,18 @@ import Login from "@/views/user/login.vue";
 import Error404 from "@/views/errors/404.vue";
 import Error403 from "@/views/errors/403.vue";
 import testRoutes from "./modules/test";
+import userRoutes from "./modules/user";
 
 export const routes: RouteRecordRaw[] = [
     {
         path: "/",
-        name: "Index",
+        name: "index",
         redirect: "/home",
         component: Layout,
         children: [
             {
                 path: "home",
-                name: "Home",
+                name: "home",
                 meta: { label: "主页", icon: HomeOutlineIcon },
                 component: () => import("@/views/home.vue"),
             },
@@ -29,23 +30,24 @@ export const routes: RouteRecordRaw[] = [
     },
     {
         path: "/login",
-        name: "Login",
+        name: "login",
         meta: { hidden: true },
         component: Login,
     },
     {
         path: "/404",
-        name: "Error404",
+        name: "error404",
         meta: { hidden: true },
         component: Error404,
     },
     {
         path: "/403",
-        name: "Error403",
+        name: "error403",
         meta: { hidden: true },
         component: Error403,
     },
     ...testRoutes,
+    ...userRoutes,
 ];
 
 const router = createRouter({
