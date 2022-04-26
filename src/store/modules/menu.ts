@@ -1,11 +1,9 @@
 // 菜单列表
 import { defineStore } from "pinia";
-import type { RouteRecordName, RouteRecordRaw } from "vue-router";
-import { RouterLink } from "vue-router";
+import type { RouteRecordRaw } from "vue-router";
 import type { MenuOption } from "naive-ui";
-import { h, Component } from "vue";
-import { NIcon } from "naive-ui";
 import { Home as HomeIcon } from "@vicons/ionicons5";
+import { renderIcon, renderRouterLink } from "@/utils/render";
 import { routes } from "@/router";
 
 export interface MenuStoreState {
@@ -15,20 +13,6 @@ export interface MenuStoreState {
 export interface MenuStoreActions {
     createMenuList: () => void;
 }
-
-/** 渲染图标组件方法（不传入参数返回undefined） */
-const renderIcon = (icon: Component | undefined) => {
-    return icon ? () => h(NIcon, null, { default: () => h(icon) }) : undefined;
-};
-
-/**
- * 渲染router-link组件方法
- * @param   name    对应routes的跳转name
- * @param   label   菜单名称
- */
-const renderRouterLink = (name: RouteRecordName | undefined, label?: string) => {
-    return h(RouterLink, { to: { name } }, { default: () => label });
-};
 
 // 递归创建菜单列表
 const handleRoutesChildren = (list: RouteRecordRaw[]) => {
