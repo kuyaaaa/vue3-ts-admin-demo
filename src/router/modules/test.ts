@@ -69,11 +69,21 @@ const testRoutes: RouteRecordRaw[] = [
     {
         path: "/test3",
         name: "test3",
-        component: () => import("@/views/test/test1.vue"),
+        component: Layout,
         meta: {
-            label: "测试3",
-            icon: AlbumsOutlineIcon,
+            onlyFirst: true,
         },
+        children: [
+            {
+                path: "3",
+                name: "test3-1",
+                component: () => import("@/views/test/test1.vue"),
+                meta: {
+                    label: "测试一级菜单",
+                    icon: AlbumsOutlineIcon,
+                },
+            },
+        ],
     },
 ];
 

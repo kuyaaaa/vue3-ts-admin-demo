@@ -17,18 +17,27 @@ export interface MenuStoreActions {
 // 递归创建菜单列表
 const handleRoutesChildren = (list: RouteRecordRaw[]) => {
     const finalList: any[] = [];
-    list.forEach(item => {
-        const { meta, name } = item;
+    for (let i = 0; i < list.length; i++) {
+        const item = list[i];
         // 隐藏菜单不加入
-        if (!meta?.hidden) {
+        if (!item.meta?.hidden) {
+            // onlyFirst检测，直接取children[0]做一级标签
+            const { meta, name } = item.meta?.onlyFirst && item.children ? item.children[0] : item;
             /** 最终处理后所需要的菜单一级子元素 */
             const finalChild: MenuOption = {
                 key: String(name),
-                label: item.children ? meta?.label : () => renderRouterLink(name, meta?.label),
+                // 没有onlyFirst标识且有子菜单 不具有跳转功能，即作为折叠菜单栏
+                label:
+                    !item.meta?.onlyFirst && item.children
+                        ? meta?.label
+                        : () => renderRouterLink(name, meta?.label),
                 disabled: meta?.disabled,
                 icon: renderIcon(meta?.icon),
             };
-
+            if (item.meta?.onlyFirst) {
+                finalList.push(finalChild);
+                continue;
+            }
             // 子元素中还有儿子判断，进行递归
             if (item.children) {
                 finalChild.children = handleRoutesChildren(item.children);
@@ -36,7 +45,7 @@ const handleRoutesChildren = (list: RouteRecordRaw[]) => {
 
             finalList.push(finalChild);
         }
-    });
+    }
     return finalList;
 };
 

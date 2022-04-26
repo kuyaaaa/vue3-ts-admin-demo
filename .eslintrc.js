@@ -24,6 +24,8 @@ module.exports = {
         "no-console": "off",
         "no-else-return": "off",
         "no-unused-vars": ["warn", { varsIgnorePattern: "Window" }],
+        "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
+        "no-continue": "off",
         "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
         "import/extensions": [2, "never", { "web.js": "never", json: "never", vue: "off" }],
         "import/no-unresolved": "off",

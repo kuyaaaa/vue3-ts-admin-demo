@@ -10,11 +10,14 @@ declare module "vue-router" {
      * @param   icon        图标，需从"@vicons/ionicons5"引入
      * @param   hidden      是否在菜单中隐藏
      * @param   disabled    是否在菜单中禁用
+     * @param   onlyFirst   是否只为一级菜单
+     *                      若为true，只会取当前路由children下第一个元素替换为一级菜单
      */
     interface RouteMeta {
         label?: string;
         icon?: Component;
         hidden?: boolean;
         disabled?: boolean;
+        onlyFirst?: boolean;
     }
 }
