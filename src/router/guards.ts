@@ -1,4 +1,6 @@
 // 路由守卫
+import NProgress from "nprogress";
+import "@/assets/styles/nprogress.scss";
 import router from "./index";
 import { TOKEN } from "@/utils/static";
 
@@ -7,6 +9,7 @@ const token = window.localStorage.getItem(TOKEN);
 const whiteList = ["/login"];
 
 router.beforeEach((to, from, next) => {
+    NProgress.start();
     // 白名单检测
     const isWhite = whiteList.some(item => item === to.fullPath);
     if (isWhite) {
@@ -19,4 +22,8 @@ router.beforeEach((to, from, next) => {
     } else {
         window.$router.push("/login");
     }
+});
+
+router.afterEach(() => {
+    NProgress.done();
 });

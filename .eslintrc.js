@@ -27,7 +27,11 @@ module.exports = {
         "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
         "no-continue": "off",
         "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
-        "import/extensions": [2, "never", { "web.js": "never", json: "never", vue: "off" }],
+        "import/extensions": [
+            2,
+            "never",
+            { "web.js": "never", json: "never", vue: "off", scss: "off" },
+        ],
         "import/no-unresolved": "off",
         "import/prefer-default-export": "off",
         "vue/multi-word-component-names": "off",
