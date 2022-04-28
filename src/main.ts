@@ -4,6 +4,7 @@ import App from "@/App.vue";
 import store from "@/store";
 // router
 import router from "@/router";
+import "@/router/guards";
 // axios
 import axios from "@/utils/request";
 
