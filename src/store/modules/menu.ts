@@ -80,8 +80,6 @@ const useMenuStore = defineStore<"menu", MenuStoreState, {}, MenuStoreActions>({
             // 遍历剩下的路由，加入菜单列表
             menuList.push(...handleRoutesChildren(routesList));
 
-            console.log(menuList);
-
             this.list = menuList;
         },
     },
