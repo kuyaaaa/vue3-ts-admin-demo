@@ -19,8 +19,12 @@ const useLoginStore = defineStore({
             // 临时token
             this[TOKEN] = "1";
             window.localStorage.setItem(TOKEN, this.token);
-            const { redirect = "/" } = window.$router.currentRoute.value.query;
-            window.$router.push(redirect as string);
+            const { redirect = "/", query } = window.$router.currentRoute.value.query;
+            window.$message.success("登陆成功，正在跳转...");
+            window.$router.push({
+                path: redirect as string,
+                query: query ? JSON.parse(query as string) : undefined,
+            });
         },
         /** 登出 */
         logout() {

@@ -4,14 +4,15 @@ import "@/assets/styles/nprogress.scss";
 import router from "./index";
 import { TOKEN } from "@/utils/static";
 
-const token = window.localStorage.getItem(TOKEN);
 /** 白名单 直接跳过的路由路径 */
-const whiteList = ["/login"];
+const whiteList = ["/login", "/404", "/403"];
 
 router.beforeEach((to, from, next) => {
     NProgress.start();
-    // 白名单检测
-    const isWhite = whiteList.some(item => item === to.fullPath);
+    /** token */
+    const token = window.localStorage.getItem(TOKEN);
+    /** 是否为白名单 */
+    const isWhite = whiteList.some(item => item === to.path);
     if (isWhite) {
         next();
         return;
@@ -20,7 +21,13 @@ router.beforeEach((to, from, next) => {
     if (token) {
         next();
     } else {
-        window.$router.push("/login");
+        const redirect = to.path;
+        const query = JSON.stringify(to.query);
+        next({
+            path: "/login",
+            query: { redirect, query },
+        });
+        window.$message.error("请先登录再进行操作");
     }
 });
 
