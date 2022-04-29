@@ -1,22 +1,22 @@
 <template>
-    <n-layout class="layout-container">
-        <!-- 头部 -->
-        <n-layout-header class="layout-header" bordered>
-            <header-content />
-        </n-layout-header>
-        <n-layout class="layout-main-container" has-sider>
-            <!-- 侧栏 -->
-            <sider-content />
+    <n-layout class="layout-container" has-sider>
+        <!-- 侧栏 -->
+        <sider-content />
+        <n-layout>
+            <!-- 头部 -->
+            <n-layout-header class="layout-header" bordered>
+                <header-content />
+            </n-layout-header>
             <!-- 主内容 -->
-            <n-layout :native-scrollbar="false" embedded class="layout-main">
+            <n-layout-content :native-scrollbar="false" embedded class="layout-content-container">
                 <router-view />
-            </n-layout>
+            </n-layout-content>
         </n-layout>
     </n-layout>
 </template>
 
 <script lang="ts" setup>
-import { NLayout, NLayoutHeader } from "naive-ui";
+import { NLayout, NLayoutHeader, NLayoutContent } from "naive-ui";
 import HeaderContent from "./content/header.vue";
 import SiderContent from "./content/sider.vue";
 </script>
@@ -27,15 +27,12 @@ import SiderContent from "./content/sider.vue";
 }
 
 .layout-header {
-    height: 60px;
+    height: 50px;
     padding: 0 15px;
 }
 
-.layout-main-container {
+.layout-content-container {
     height: calc(100vh - 60px);
-}
-
-.layout-main {
-    padding: 10px 13px;
+    padding: 15px 20px;
 }
 </style>

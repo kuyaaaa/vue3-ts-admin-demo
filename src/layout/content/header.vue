@@ -1,7 +1,7 @@
 <template>
     <div class="header-container">
         <n-dropdown trigger="hover" :options="options" @select="handleDropdownClick">
-            <n-avatar size="large" :src="avatarUrl"></n-avatar>
+            <n-avatar size="medium" :src="avatarUrl"></n-avatar>
         </n-dropdown>
     </div>
 </template>

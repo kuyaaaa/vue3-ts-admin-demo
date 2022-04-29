@@ -4,6 +4,9 @@ import "@/assets/styles/nprogress.scss";
 import router from "./index";
 import { TOKEN } from "@/utils/static";
 
+// nprogress配置
+NProgress.configure({ showSpinner: false });
+
 /** 白名单 直接跳过的路由路径 */
 const whiteList = ["/login", "/404", "/403"];
 
