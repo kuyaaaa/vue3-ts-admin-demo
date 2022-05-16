@@ -4,7 +4,6 @@ import Layout from "@/layout/index.vue";
 import Login from "@/views/user/login.vue";
 import Error404 from "@/views/errors/404.vue";
 import Error403 from "@/views/errors/403.vue";
-import testRoutes from "./modules/test";
 import userRoutes from "./modules/user";
 
 export const routes: RouteRecordRaw[] = [
@@ -46,7 +45,6 @@ export const routes: RouteRecordRaw[] = [
         meta: { hidden: true },
         component: Error403,
     },
-    ...testRoutes,
     ...userRoutes,
 ];
 
