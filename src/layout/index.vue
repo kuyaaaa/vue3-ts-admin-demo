@@ -14,7 +14,9 @@
                 embedded
                 class="layout-content-container"
             >
-                <router-view />
+                <n-layout-content :native-scrollbar="false" embedded class="content-container">
+                    <router-view />
+                </n-layout-content>
             </n-layout-content>
         </n-layout>
     </n-layout>
@@ -22,27 +24,40 @@
 
 <script lang="ts" setup>
 import { NLayout, NLayoutHeader, NLayoutContent } from "naive-ui";
-import { onMounted, ref } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
+import { throttle } from "lodash";
 import HeaderContent from "./content/header.vue";
 import SiderContent from "./content/sider.vue";
 import useSystemStore from "@/store/modules/system";
 
 const style_content_padding = 20;
+const style_content_height = ref("100vh");
 
 const systemStore = useSystemStore();
 
 const headerRef = ref<any>(null);
 const contentRef = ref<any>(null);
 
+const resizeHandler = throttle(() => {
+    const headerEl = headerRef.value?.$el as HTMLElement;
+    const contentEl = contentRef.value?.$el as HTMLElement;
+
+    systemStore.$patch({
+        headerHeight: headerEl.offsetHeight,
+        contentHeight: contentEl.offsetHeight - style_content_padding * 2,
+        contentWidth: contentEl.offsetWidth - style_content_padding * 2,
+    });
+
+    style_content_height.value = `${window.innerHeight - systemStore.headerHeight}px`;
+}, 200);
+
 onMounted(() => {
-    const headerEl = headerRef.value.$el as HTMLElement;
-    systemStore.headerHeight = headerEl.offsetHeight;
+    window.addEventListener("resize", resizeHandler);
+    resizeHandler();
+});
 
-    const contentEl = contentRef.value.$el as HTMLElement;
-    systemStore.contentHeight = contentEl.offsetHeight - style_content_padding * 2;
-    systemStore.contentWidth = contentEl.offsetWidth - style_content_padding * 2;
-
-    console.log(systemStore);
+onBeforeUnmount(() => {
+    window.removeEventListener("resize", resizeHandler);
 });
 </script>
 
@@ -57,8 +72,11 @@ onMounted(() => {
 }
 
 .layout-content-container {
-    height: calc(100vh - 50px);
+    height: v-bind(style_content_height);
+}
+
+.content-container {
     padding: v-bind('style_content_padding + "px"');
-    background-color: #fff;
+    box-sizing: border-box;
 }
 </style>
