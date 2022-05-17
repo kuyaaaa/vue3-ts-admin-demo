@@ -32,7 +32,8 @@ import SiderContent from "./content/sider.vue";
 }
 
 .layout-content-container {
-    height: calc(100vh - 60px);
+    height: calc(100vh - 50px);
     padding: 15px 20px;
+    background-color: #fff;
 }
 </style>
