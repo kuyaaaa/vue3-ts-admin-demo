@@ -35,4 +35,6 @@ module.exports = {
     //换行方式 默认值。
     // 因为使用了一些折行敏感型的渲染器（如GitHub comment）而按照markdown文本样式进行折行
     proseWrap: "preserve",
+    // 行尾序列设置
+    endOfLine: "auto",
 };
