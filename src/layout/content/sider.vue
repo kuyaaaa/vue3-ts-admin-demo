@@ -19,6 +19,7 @@
             />
             <n-text v-if="!collapsed" class="text-nowrap">COOL LOGO!</n-text>
         </n-space>
+        <n-divider class="divider-style" />
         <n-menu
             :options="menuOptions"
             :value="currentMenu"
@@ -31,7 +32,7 @@
 
 <script lang="ts" setup>
 import { computed, ref } from "vue";
-import { NLayoutSider, NMenu, NSpace, NImage, NText } from "naive-ui";
+import { NLayoutSider, NMenu, NSpace, NImage, NText, NDivider } from "naive-ui";
 import useMenuStore from "@/store/modules/menu";
 
 const menuStore = useMenuStore();
@@ -62,5 +63,10 @@ const collapsed = ref(false);
     padding: 10px 0;
     font-size: 22px;
     font-weight: 700;
+}
+
+.divider-style {
+    margin: 5px 0;
+    padding: 0 10px;
 }
 </style>
