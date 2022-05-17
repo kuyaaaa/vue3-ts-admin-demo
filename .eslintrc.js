@@ -20,6 +20,7 @@ module.exports = {
     plugins: ["prettier"],
     rules: {
         "prettier/prettier": "error",
+        camelcase: ["error", { allow: ["^style_"] }],
         "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
         "no-console": "off",
         "no-else-return": "off",

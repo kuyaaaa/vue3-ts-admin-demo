@@ -1,11 +1,19 @@
 <template>
-    <n-data-table :columns="columns" :data="data" :pagination="pagination" :max-height="500" />
+    <n-data-table
+        :columns="columns"
+        :data="data"
+        :pagination="pagination"
+        :max-height="systemStore.contentHeight - 89"
+    />
 </template>
 
 <script lang="ts" setup>
 import { h, ref } from "vue";
 import { NDataTable, NButton } from "naive-ui";
 import type { PaginationProps, DataTableColumns } from "naive-ui";
+import useSystemStore from "@/store/modules/system";
+
+const systemStore = useSystemStore();
 
 type Song = {
     no: number;
