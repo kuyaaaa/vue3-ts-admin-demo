@@ -45,3 +45,12 @@
     word-break: keep-all;
     white-space: nowrap;
 }
+
+/** ============================ 容器 ============================ */
+.content-card {
+    border-radius: 6px;
+
+    + .content-card {
+        margin-top: 10px;
+    }
+}
