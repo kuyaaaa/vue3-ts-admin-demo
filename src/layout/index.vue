@@ -1,7 +1,7 @@
 <template>
     <n-layout class="layout-container" has-sider>
         <!-- 侧栏 -->
-        <sider-content />
+        <sider-content @collapsed="handleSiderCollapse" />
         <n-layout>
             <!-- 头部 -->
             <n-layout-header ref="headerRef" class="layout-header" bordered>
@@ -50,6 +50,11 @@ const resizeHandler = throttle(() => {
 
     style_content_height.value = `${window.innerHeight - systemStore.headerHeight}px`;
 }, 200);
+
+const handleSiderCollapse = (collapsed: boolean) => {
+    const contentEl = contentRef.value?.$el as HTMLElement;
+    systemStore.contentWidth = contentEl.offsetWidth - style_content_padding * 2;
+};
 
 onMounted(() => {
     window.addEventListener("resize", resizeHandler);

@@ -24,7 +24,7 @@ module.exports = {
         "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
         "no-console": "off",
         "no-else-return": "off",
-        "no-unused-vars": ["warn", { varsIgnorePattern: "Window" }],
+        "no-unused-vars": ["warn", { varsIgnorePattern: "Window", args: "none" }],
         "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
         "no-continue": "off",
         "import/no-extraneous-dependencies": ["error", { devDependencies: true }],

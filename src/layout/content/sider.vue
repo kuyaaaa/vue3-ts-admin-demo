@@ -10,6 +10,7 @@
         show-trigger="bar"
         @collapse="collapsed = true"
         @expand="collapsed = false"
+        @update:collapsed="(collapsed: boolean) => emit('collapsed', collapsed)"
     >
         <n-space :wrap="false" class="logo-container" align="center" justify="center">
             <n-image
@@ -34,6 +35,10 @@
 import { computed, ref } from "vue";
 import { NLayoutSider, NMenu, NSpace, NImage, NText, NDivider } from "naive-ui";
 import useMenuStore from "@/store/modules/menu";
+
+const emit = defineEmits<{
+    (event: "collapsed", collapsed: boolean): void;
+}>();
 
 const menuStore = useMenuStore();
 
