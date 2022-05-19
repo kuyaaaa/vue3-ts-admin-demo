@@ -6,6 +6,10 @@
     + .content-card {
         margin-top: 10px;
     }
+
+    .n-form {
+        max-width: 640px;
+    }
 }
 
 // 文字不换行
@@ -15,11 +19,20 @@
 }
 
 // grid右对齐容器
-.grid-item-right{
+.grid-item-right {
     text-align: right;
 
     // 子元素间隔
     > * + * {
+        margin-left: 10px;
+    }
+}
+
+// 表单按钮行容器
+.form-btn-container {
+    text-align: center;
+
+    button + button {
         margin-left: 10px;
     }
 }
