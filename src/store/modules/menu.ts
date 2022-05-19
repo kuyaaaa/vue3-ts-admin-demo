@@ -6,14 +6,6 @@ import { Home as HomeIcon } from "@vicons/ionicons5";
 import { renderIcon, renderRouterLink } from "@/utils/render";
 import { routes } from "@/router";
 
-export interface MenuStoreState {
-    list: MenuOption[];
-}
-
-export interface MenuStoreActions {
-    createMenuList: () => void;
-}
-
 // 递归创建菜单列表
 const handleRoutesChildren = (list: RouteRecordRaw[]) => {
     const finalList: any[] = [];
@@ -49,19 +41,17 @@ const handleRoutesChildren = (list: RouteRecordRaw[]) => {
     return finalList;
 };
 
-/**
- * 菜单信息仓库
- * @state       list:菜单列表，用于naive的menu
- * @actions     createMenuList:根据routes创建菜单列表
- */
-const useMenuStore = defineStore<"menu", MenuStoreState, {}, MenuStoreActions>({
+/** 菜单信息仓库 */
+const useMenuStore = defineStore({
     id: "menu",
     state: () => {
         return {
-            list: [],
+            /** 菜单列表，用于naive的menu */
+            list: [] as MenuOption[],
         };
     },
     actions: {
+        /** 根据routes创建菜单列表 */
         createMenuList() {
             const menuList = [];
             const routesList = routes;
