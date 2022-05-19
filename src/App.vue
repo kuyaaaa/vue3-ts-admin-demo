@@ -11,4 +11,6 @@ import { NMessageProvider, NDialogProvider } from "naive-ui";
 import GlobalContainer from "@/layout/global.vue";
 </script>
 
-<style></style>
+<style lang="scss">
+@import "@/assets/styles/global.scss";
+</style>

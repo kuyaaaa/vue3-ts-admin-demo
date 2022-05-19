@@ -1,0 +1,25 @@
+// 全局样式
+
+.content-card {
+    border-radius: 6px;
+
+    + .content-card {
+        margin-top: 10px;
+    }
+}
+
+// 文字不换行
+.text-nowrap {
+    word-break: keep-all;
+    white-space: nowrap;
+}
+
+// grid右对齐容器
+.grid-item-right{
+    text-align: right;
+
+    // 子元素间隔
+    > * + * {
+        margin-left: 10px;
+    }
+}

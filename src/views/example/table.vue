@@ -1,6 +1,6 @@
 <template>
     <n-card class="content-card">
-        <n-grid x-gap="12" :cols="5">
+        <n-grid x-gap="12" y-gap="10" :cols="5">
             <n-gi>
                 <n-input
                     v-model:value="searchParams.keyword"
@@ -15,14 +15,32 @@
                     <n-time-picker v-model:value="searchParams.time" clearable />
                 </n-input-group>
             </n-gi>
-            <n-gi :offset="1" style="text-align: right">
-                <n-button type="primary">
+            <n-gi :offset="1" class="grid-item-right">
+                <n-button type="primary" @click="handleSearch">
                     <template #icon>
                         <n-icon>
                             <search-icon />
                         </n-icon>
                     </template>
                     搜索
+                </n-button>
+            </n-gi>
+            <n-gi :span="5" class="grid-item-right">
+                <n-button type="info" @click="handleExport">
+                    <template #icon>
+                        <n-icon>
+                            <download-icon />
+                        </n-icon>
+                    </template>
+                    导出内容
+                </n-button>
+                <n-button type="info" @click="handleAdd">
+                    <template #icon>
+                        <n-icon>
+                            <add-icon />
+                        </n-icon>
+                    </template>
+                    新增
                 </n-button>
             </n-gi>
         </n-grid>
@@ -52,7 +70,11 @@ import {
     NTimePicker,
 } from "naive-ui";
 import type { PaginationProps, DataTableColumns } from "naive-ui";
-import { Search as SearchIcon } from "@vicons/ionicons5";
+import {
+    Search as SearchIcon,
+    Add as AddIcon,
+    DownloadOutline as DownloadIcon,
+} from "@vicons/ionicons5";
 
 type Song = {
     no: number;
@@ -111,7 +133,7 @@ const columns: DataTableColumns<Song> = [
                 {
                     strong: true,
                     size: "small",
-                    type: "primary",
+                    type: "error",
                     onClick: () => {
                         window.$message.info(`Play ${row.title}`);
                     },
@@ -127,6 +149,17 @@ const searchParams = reactive({
     date: null,
     time: null,
 });
+const handleSearch = () => {
+    window.$message.success(`搜索：${JSON.stringify(searchParams)}`);
+};
+
+const handleAdd = () => {
+    window.$message.success(`add click`);
+};
+
+const handleExport = () => {
+    window.$message.success(`export click`);
+};
 </script>
 
 <style lang="scss" scoped></style>

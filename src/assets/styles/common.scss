@@ -38,19 +38,3 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
-/** ============================ 文字相关 ============================ */
-// 文字不换行
-.text-nowrap {
-    word-break: keep-all;
-    white-space: nowrap;
-}
-
-/** ============================ 容器 ============================ */
-.content-card {
-    border-radius: 6px;
-
-    + .content-card {
-        margin-top: 10px;
-    }
-}
