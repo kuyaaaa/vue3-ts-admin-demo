@@ -1,10 +1,12 @@
 // 挂载window下方法组件
 <template>
-    <router-view />
+    <n-config-provider :locale="zhCN" :date-locale="dateZhCN" abstract>
+        <router-view />
+    </n-config-provider>
 </template>
 
 <script lang="ts" setup>
-import { useDialog, useMessage } from "naive-ui";
+import { useDialog, useMessage, NConfigProvider, zhCN, dateZhCN } from "naive-ui";
 
 window.$message = useMessage();
 window.$dialog = useDialog();
