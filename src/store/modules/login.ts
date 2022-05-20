@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { LoginParams } from "@/types/user";
+import { LoginParams, UserInfoType } from "@/types/user";
 import { TOKEN } from "@/utils/static";
 
 const useLoginStore = defineStore({
@@ -7,6 +7,10 @@ const useLoginStore = defineStore({
     state: () => {
         return {
             [TOKEN]: "",
+            userInfo: {
+                avatar: "",
+                userName: "",
+            } as UserInfoType,
         };
     },
     actions: {
@@ -20,6 +24,8 @@ const useLoginStore = defineStore({
             this[TOKEN] = "1";
             window.localStorage.setItem(TOKEN, this.token);
             const { redirect = "/", query } = window.$router.currentRoute.value.query;
+            // 获取用户信息
+            await this.getUserInfo();
             window.$message.success("登陆成功，正在跳转...");
             window.$router.push({
                 path: redirect as string,
@@ -31,6 +37,16 @@ const useLoginStore = defineStore({
             this[TOKEN] = "";
             window.localStorage.removeItem(TOKEN);
             window.$router.push({ name: "login" });
+        },
+        /** 获取用户信息 */
+        async getUserInfo() {
+            // const res = await window.$http.get("/userInfo");
+            // 临时数据
+            const info: UserInfoType = {
+                avatar: "https://avatars.githubusercontent.com/u/54495986?v=4",
+                userName: "爷傲丶奈我何",
+            };
+            this.userInfo = info;
         },
     },
 });

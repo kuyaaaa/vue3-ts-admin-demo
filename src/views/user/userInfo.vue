@@ -40,13 +40,14 @@
 import { ref, watch } from "vue";
 import { NCard, NForm, NFormItem, NInput, NButton, NUpload, NAvatar, NSpace } from "naive-ui";
 import type { FormInst, UploadFileInfo } from "naive-ui";
+import { UserInfoType } from "@/types/user";
 
 /** 头像上传接口地址，自行修改后缀 */
 const imgUploadApiUrl = `${import.meta.env.VITE_BASE_URL}/upload/avatar`;
 
 const formRef = ref<FormInst | null>(null);
-const formData = ref({
-    avatar: "https://avatars.githubusercontent.com/u/54495986?v=4",
+const formData = ref<UserInfoType>({
+    avatar: "",
     userName: "",
 });
 const rules = {
