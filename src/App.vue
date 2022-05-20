@@ -1,5 +1,5 @@
 <template>
-    <n-config-provider :theme="theme">
+    <n-config-provider :theme="theme" abstract>
         <n-message-provider>
             <n-dialog-provider>
                 <global-container />
