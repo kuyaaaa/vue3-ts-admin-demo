@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import type { GlobalTheme } from "naive-ui";
 
 const useSystemStore = defineStore({
     id: "system",
@@ -10,6 +11,8 @@ const useSystemStore = defineStore({
             contentHeight: 0,
             /** 主内容容器宽度（不含padding以外层） */
             contentWidth: 0,
+            /** 主题 */
+            theme: null as GlobalTheme | null,
         };
     },
 });

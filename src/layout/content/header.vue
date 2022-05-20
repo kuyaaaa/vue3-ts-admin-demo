@@ -1,19 +1,32 @@
 <template>
     <div class="header-container">
-        <n-dropdown trigger="hover" :options="options" @select="handleDropdownClick">
-            <n-avatar size="medium" :src="avatarUrl"></n-avatar>
-        </n-dropdown>
+        <n-space class="header-container" align="center" justify="end">
+            <n-switch
+                v-model:value="themeSwitchValue"
+                :round="false"
+                size="medium"
+                @update:value="handleThemeChange"
+            >
+                <template #checked-icon>🌙</template>
+                <template #unchecked-icon>☀</template>
+            </n-switch>
+            <n-dropdown trigger="hover" :options="options" @select="handleDropdownClick">
+                <n-avatar style="display: block" size="medium" :src="avatarUrl"></n-avatar>
+            </n-dropdown>
+        </n-space>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { NAvatar, NDropdown } from "naive-ui";
+import { ref } from "vue";
+import { NSpace, NAvatar, NDropdown, NSwitch, darkTheme } from "naive-ui";
 import {
     PersonCircleOutline as PersonCircleOutlineIcon,
     LogInOutline as LogInOutlineIcon,
 } from "@vicons/ionicons5";
 import { renderIcon } from "@/utils/render";
 import useLoginStore from "@/store/modules/login";
+import useSystemStore from "@/store/modules/system";
 
 const avatarUrl = "https://avatars.githubusercontent.com/u/54495986?v=4";
 
@@ -49,12 +62,17 @@ const handleDropdownClick = (key: string) => {
             break;
     }
 };
+
+const systemStore = useSystemStore();
+
+const themeSwitchValue = ref(false);
+const handleThemeChange = (isDark: boolean) => {
+    systemStore.theme = isDark ? darkTheme : null;
+};
 </script>
 
 <style lang="scss" scoped>
 .header-container {
     height: 100%;
-    @include flex-center-main;
-    justify-content: flex-end;
 }
 </style>
