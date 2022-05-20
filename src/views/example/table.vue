@@ -1,5 +1,5 @@
 <template>
-    <n-card class="content-card">
+    <n-card class="card-container">
         <n-grid x-gap="12" y-gap="10" :cols="5">
             <n-gi>
                 <n-input
@@ -45,7 +45,7 @@
             </n-gi>
         </n-grid>
     </n-card>
-    <n-card class="content-card">
+    <n-card class="card-container">
         <n-data-table
             :columns="columns"
             :data="data"

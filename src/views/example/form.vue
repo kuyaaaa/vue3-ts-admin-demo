@@ -1,5 +1,5 @@
 <template>
-    <n-card class="content-card">
+    <n-card class="card-container">
         <n-form
             ref="formRef"
             :model="formData"

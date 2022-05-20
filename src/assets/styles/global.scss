@@ -1,9 +1,9 @@
 // 全局样式
 
-.content-card {
-    border-radius: 6px;
+.card-container {
+    border-radius: 8px;
 
-    + .content-card {
+    + .card-container {
         margin-top: 10px;
     }
 
