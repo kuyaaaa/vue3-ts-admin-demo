@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { LoginParams, UserInfoType } from "@/types/user";
 import { TOKEN } from "@/utils/static";
+import { removeToken, setToken } from "@/utils/token";
 
 const useLoginStore = defineStore({
     id: "login",
@@ -22,7 +23,7 @@ const useLoginStore = defineStore({
             // this.token = res.data.token;
             // 临时token
             this[TOKEN] = "1";
-            window.localStorage.setItem(TOKEN, this.token);
+            setToken(this.token);
             const { redirect = "/", query } = window.$router.currentRoute.value.query;
             // 获取用户信息
             await this.getUserInfo();
@@ -35,7 +36,7 @@ const useLoginStore = defineStore({
         /** 登出 */
         logout() {
             this[TOKEN] = "";
-            window.localStorage.removeItem(TOKEN);
+            removeToken();
             window.$router.push({ name: "login" });
         },
         /** 获取用户信息 */

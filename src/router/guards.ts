@@ -2,7 +2,7 @@
 import NProgress from "nprogress";
 import "@/assets/styles/nprogress.scss";
 import router from "./index";
-import { TOKEN } from "@/utils/static";
+import { getToken } from "@/utils/token";
 
 // nprogress配置
 NProgress.configure({ showSpinner: false });
@@ -13,7 +13,7 @@ const whiteList = ["/login", "/404", "/403"];
 router.beforeEach((to, from, next) => {
     NProgress.start();
     /** token */
-    const token = window.localStorage.getItem(TOKEN);
+    const token = getToken();
     /** 是否为白名单 */
     const isWhite = whiteList.some(item => item === to.path);
     if (isWhite) {

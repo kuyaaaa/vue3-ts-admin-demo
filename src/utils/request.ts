@@ -1,7 +1,8 @@
 import axios from "axios";
 import { TOKEN } from "@/utils/static";
+import { getToken } from "./token";
 
-const token = window.localStorage.getItem(TOKEN) || "";
+const token = getToken();
 
 const service = axios.create({
     baseURL: `${import.meta.env.VITE_BASE_URL}/v1`,
