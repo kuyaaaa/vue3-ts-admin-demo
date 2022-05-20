@@ -3,6 +3,8 @@ import NProgress from "nprogress";
 import "@/assets/styles/nprogress.scss";
 import router from "./index";
 import { getToken } from "@/utils/token";
+import useLoginStore from "@/store/modules/login";
+import { TOKEN } from "@/utils/static";
 
 // nprogress配置
 NProgress.configure({ showSpinner: false });
@@ -10,20 +12,30 @@ NProgress.configure({ showSpinner: false });
 /** 白名单 直接跳过的路由路径 */
 const whiteList = ["/login", "/404", "/403"];
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
+    const loginStore = useLoginStore();
+
     NProgress.start();
     /** token */
-    const token = getToken();
+    const token = loginStore[TOKEN] || getToken();
+    /** 用户名（用于判断是否获取过用户信息） */
+    const { userName } = loginStore.userInfo;
     /** 是否为白名单 */
     const isWhite = whiteList.some(item => item === to.path);
     if (isWhite) {
         next();
-        return;
     }
-    // token检测
-    if (token) {
+    // has token, no userInfo
+    else if (token && !userName) {
+        await loginStore.getUserInfo();
         next();
-    } else {
+    }
+    // has token & userInfo
+    else if (token) {
+        next();
+    }
+    // no token
+    else {
         const redirect = to.path;
         const query = JSON.stringify(to.query);
         next({

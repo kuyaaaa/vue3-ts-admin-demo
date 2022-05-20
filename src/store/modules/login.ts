@@ -43,11 +43,13 @@ const useLoginStore = defineStore({
         async getUserInfo() {
             // const res = await window.$http.get("/userInfo");
             // 临时数据
-            const info: UserInfoType = {
-                avatar: "https://avatars.githubusercontent.com/u/54495986?v=4",
-                userName: "爷傲丶奈我何",
-            };
-            this.userInfo = info;
+            setTimeout(() => {
+                const info: UserInfoType = {
+                    avatar: "https://avatars.githubusercontent.com/u/54495986?v=4",
+                    userName: "爷傲丶奈我何",
+                };
+                this.userInfo = info;
+            }, 1000);
         },
     },
 });

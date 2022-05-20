@@ -40,7 +40,13 @@
 import { ref, watch } from "vue";
 import { NCard, NForm, NFormItem, NInput, NButton, NUpload, NAvatar, NSpace } from "naive-ui";
 import type { FormInst, UploadFileInfo } from "naive-ui";
+import { storeToRefs } from "pinia";
+import { cloneDeep } from "lodash";
 import { UserInfoType } from "@/types/user";
+import useLoginStore from "@/store/modules/login";
+
+const loginStore = useLoginStore();
+const { userInfo } = storeToRefs(loginStore);
 
 /** 头像上传接口地址，自行修改后缀 */
 const imgUploadApiUrl = `${import.meta.env.VITE_BASE_URL}/upload/avatar`;
@@ -74,18 +80,23 @@ const handleSubmit = (e: MouseEvent) => {
     });
 };
 
-const avatarList = ref<UploadFileInfo[]>([
-    {
-        id: "1",
-        name: formData.value.avatar,
-        status: "finished",
-        url: formData.value.avatar,
+const avatarList = ref<UploadFileInfo[]>([]);
+
+watch(
+    userInfo,
+    val => {
+        formData.value = cloneDeep(val);
+        avatarList.value = [
+            {
+                id: "1",
+                name: formData.value.avatar,
+                status: "finished",
+                url: formData.value.avatar,
+            },
+        ];
     },
-]);
-watch(avatarList, (val: UploadFileInfo[]) => {
-    const avatarUploadData = val[0];
-    formData.value.avatar = avatarUploadData?.url || "";
-});
+    { immediate: true }
+);
 </script>
 
 <style lang="scss" scoped></style>

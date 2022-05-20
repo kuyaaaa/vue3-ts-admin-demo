@@ -11,7 +11,7 @@
                 <template #unchecked-icon>☀</template>
             </n-switch>
             <n-dropdown trigger="hover" :options="options" @select="handleDropdownClick">
-                <n-avatar style="display: block" size="medium" :src="avatarUrl"></n-avatar>
+                <n-avatar style="display: block" size="medium" :src="userInfo.avatar"></n-avatar>
             </n-dropdown>
         </n-space>
     </div>
@@ -24,11 +24,10 @@ import {
     PersonCircleOutline as PersonCircleOutlineIcon,
     LogInOutline as LogInOutlineIcon,
 } from "@vicons/ionicons5";
+import { storeToRefs } from "pinia";
 import { renderIcon } from "@/utils/render";
 import useLoginStore from "@/store/modules/login";
 import useSystemStore from "@/store/modules/system";
-
-const avatarUrl = "https://avatars.githubusercontent.com/u/54495986?v=4";
 
 const options = [
     {
@@ -48,6 +47,7 @@ const options = [
 ];
 
 const loginStore = useLoginStore();
+const { userInfo } = storeToRefs(loginStore);
 
 const handleDropdownClick = (key: string) => {
     switch (key) {
