@@ -18,8 +18,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
-import { NSpace, NAvatar, NDropdown, NSwitch, darkTheme } from "naive-ui";
+import { h, ref } from "vue";
+import { NSpace, NAvatar, NDropdown, NSwitch, darkTheme, NText } from "naive-ui";
 import {
     PersonCircleOutline as PersonCircleOutlineIcon,
     LogInOutline as LogInOutlineIcon,
@@ -29,7 +29,38 @@ import { renderIcon } from "@/utils/render";
 import useLoginStore from "@/store/modules/login";
 import useSystemStore from "@/store/modules/system";
 
+const loginStore = useLoginStore();
+const { userInfo } = storeToRefs(loginStore);
+
+const renderCustomDropdownHeader = () => {
+    return h(
+        "div",
+        {
+            style: "max-width: 200px; display: flex; align-items: center; padding: 8px 12px;",
+        },
+        [
+            h("div", null, [
+                h("div", null, [
+                    h(NText, { depth: 2 }, { default: () => userInfo.value.userName }),
+                ]),
+                h("div", { style: "font-size: 12px; margin-top: 8px;" }, [
+                    h(NText, { depth: 3 }, { default: () => userInfo.value.signature }),
+                ]),
+            ]),
+        ]
+    );
+};
+
 const options = [
+    {
+        key: "header",
+        type: "render",
+        render: renderCustomDropdownHeader,
+    },
+    {
+        key: "header-divider",
+        type: "divider",
+    },
     {
         label: "个人信息",
         key: "userInfo",
@@ -40,14 +71,11 @@ const options = [
         key: "d1",
     },
     {
-        label: "登出",
+        label: "退出账号",
         key: "loginOut",
         icon: renderIcon(LogInOutlineIcon),
     },
 ];
-
-const loginStore = useLoginStore();
-const { userInfo } = storeToRefs(loginStore);
 
 const handleDropdownClick = (key: string) => {
     switch (key) {

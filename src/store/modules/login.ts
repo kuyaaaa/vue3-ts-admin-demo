@@ -11,6 +11,7 @@ const useLoginStore = defineStore({
             userInfo: {
                 avatar: "",
                 userName: "",
+                signature: "",
             } as UserInfoType,
         };
     },
@@ -35,9 +36,18 @@ const useLoginStore = defineStore({
         },
         /** 登出 */
         logout() {
-            this[TOKEN] = "";
-            removeToken();
-            window.$router.push({ name: "login" });
+            window.$dialog.error({
+                title: "警告",
+                content: "确认退出账号吗？",
+                negativeText: "后悔了",
+                positiveText: "别墨迹",
+                onPositiveClick: () => {
+                    this[TOKEN] = "";
+                    removeToken();
+                    window.$router.push({ name: "login" });
+                    window.$message.success("退出账号成功");
+                },
+            });
         },
         /** 获取用户信息 */
         async getUserInfo() {
@@ -47,6 +57,7 @@ const useLoginStore = defineStore({
                 const info: UserInfoType = {
                     avatar: "https://avatars.githubusercontent.com/u/54495986?v=4",
                     userName: "爷傲丶奈我何",
+                    signature: "这个人很懒，什么都没有留下！",
                 };
                 this.userInfo = info;
             }, 1000);

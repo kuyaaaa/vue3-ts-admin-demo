@@ -8,4 +8,5 @@ export interface LoginParams {
 export interface UserInfoType {
     avatar: string;
     userName: string;
+    signature: string;
 }

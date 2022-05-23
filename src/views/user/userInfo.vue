@@ -28,6 +28,13 @@
             <n-form-item label="用户昵称" path="userName">
                 <n-input v-model:value="formData.userName" placeholder="请输入用户昵称" />
             </n-form-item>
+            <n-form-item label="个性签名" path="signature">
+                <n-input
+                    v-model:value="formData.signature"
+                    type="textarea"
+                    placeholder="这个人很懒，什么都没有留下！"
+                />
+            </n-form-item>
 
             <div class="form-btn-container">
                 <n-button type="primary" @click="handleSubmit">确认修改</n-button>
@@ -55,6 +62,7 @@ const formRef = ref<FormInst | null>(null);
 const formData = ref<UserInfoType>({
     avatar: "",
     userName: "",
+    signature: "",
 });
 const rules = {
     avatar: {
