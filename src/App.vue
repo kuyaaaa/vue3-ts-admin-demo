@@ -1,5 +1,5 @@
 <template>
-    <n-config-provider :theme="theme" abstract>
+    <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN" abstract>
         <n-message-provider>
             <n-dialog-provider>
                 <global-container />
@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { NMessageProvider, NDialogProvider, NConfigProvider } from "naive-ui";
+import { NMessageProvider, NDialogProvider, NConfigProvider, zhCN, dateZhCN } from "naive-ui";
 import { storeToRefs } from "pinia";
 import GlobalContainer from "@/layout/global.vue";
 import useSystemStore from "@/store/modules/system";
