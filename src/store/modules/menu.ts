@@ -12,11 +12,18 @@ const dealLabel = (child: RouteRecordRaw) => {
     if (child.meta?.outLink) {
         return () => renderATag(String(child.meta?.label), { href: child.meta?.outLink });
     }
-    // 有onlyFirst 或 最后一层路由：做独立标签
-    else if (child.meta?.onlyFirst || !child.children) {
+    // 有onlyFirst 并 有子元素：取第一个子元素属性渲染router-link标签
+    else if (child.meta?.onlyFirst && child.children) {
+        const { name, meta } = child.children[0];
+        return () => renderRouterLink(String(name), meta?.label);
+    }
+    // 无子元素，即最底层菜单，直接渲染router-link标签
+    else if (!child.children) {
         const { name } = child.children ? child.children[0] : child;
         return () => renderRouterLink(String(name), child.meta?.label);
-    } else {
+    }
+    // 其它情况归类为折叠菜单
+    else {
         return child.meta?.label;
     }
 };

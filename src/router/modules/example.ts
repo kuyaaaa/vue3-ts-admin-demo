@@ -36,13 +36,13 @@ const userRoutes: RouteRecordRaw[] = [
         path: "/one",
         component: Layout,
         redirect: "/one/index",
-        meta: { label: "单级菜单", onlyFirst: true },
+        meta: { onlyFirst: true },
         children: [
             {
                 path: "index",
                 name: "oneIndex",
-                component: () => import("@/views/example/table.vue"),
-                meta: { icon: GitCommitOutlineIcon },
+                component: () => import("@/views/one/index.vue"),
+                meta: { label: "单级菜单", icon: GitCommitOutlineIcon },
             },
         ],
     },
