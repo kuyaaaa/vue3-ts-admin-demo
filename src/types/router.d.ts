@@ -12,6 +12,7 @@ declare module "vue-router" {
      * @param   disabled    是否在菜单中禁用
      * @param   onlyFirst   是否只为一级菜单
      *                      若为true，只会取当前路由children下第一个元素替换为一级菜单
+     * @param   outLink     如果为外链，填外链地址
      */
     interface RouteMeta {
         label?: string;
@@ -19,5 +20,6 @@ declare module "vue-router" {
         hidden?: boolean;
         disabled?: boolean;
         onlyFirst?: boolean;
+        outLink?: string;
     }
 }

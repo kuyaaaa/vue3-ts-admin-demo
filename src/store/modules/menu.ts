@@ -3,8 +3,23 @@ import { defineStore } from "pinia";
 import type { RouteRecordRaw } from "vue-router";
 import type { MenuOption } from "naive-ui";
 import { Home as HomeIcon } from "@vicons/ionicons5";
-import { renderIcon, renderRouterLink } from "@/utils/render";
+import { renderIcon, renderRouterLink, renderATag } from "@/utils/render";
 import { routes } from "@/router";
+
+/** label字段处理，用于渲染不同的标签 */
+const dealLabel = (child: RouteRecordRaw) => {
+    // 有outLink：做外链跳转
+    if (child.meta?.outLink) {
+        return () => renderATag(String(child.meta?.label), { href: child.meta?.outLink });
+    }
+    // 有onlyFirst 或 最后一层路由：做独立标签
+    else if (child.meta?.onlyFirst || !child.children) {
+        const { name } = child.children ? child.children[0] : child;
+        return () => renderRouterLink(String(name), child.meta?.label);
+    } else {
+        return child.meta?.label;
+    }
+};
 
 // 递归创建菜单列表
 const handleRoutesChildren = (list: RouteRecordRaw[]) => {
@@ -18,13 +33,12 @@ const handleRoutesChildren = (list: RouteRecordRaw[]) => {
             /** 最终处理后所需要的菜单一级子元素 */
             const finalChild: MenuOption = {
                 key: String(name),
-                // 没有onlyFirst标识且有子菜单 不具有跳转功能，即作为折叠菜单栏
-                label:
-                    !item.meta?.onlyFirst && item.children
-                        ? meta?.label
-                        : () => renderRouterLink(name, meta?.label),
+                label: dealLabel(item),
                 disabled: meta?.disabled,
                 icon: renderIcon(meta?.icon),
+                extra: meta?.isOutLink
+                    ? () => renderATag(meta.label as string, { href: item.path })
+                    : undefined,
             };
             if (item.meta?.onlyFirst) {
                 finalList.push(finalChild);
@@ -63,7 +77,7 @@ const useMenuStore = defineStore({
                 const { meta, name } = homeRoute;
                 menuList.push({
                     key: String(name),
-                    label: () => renderRouterLink(name, meta?.label),
+                    label: () => renderRouterLink(String(name), meta?.label),
                     icon: renderIcon(meta?.icon ? meta.icon : HomeIcon),
                 });
             }
