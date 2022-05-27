@@ -1,6 +1,10 @@
 <template>
     <n-breadcrumb>
-        <n-breadcrumb-item v-for="item in breadcrumbList" :key="item.name">
+        <n-breadcrumb-item
+            v-for="item in breadcrumbList"
+            :key="item.name"
+            @click="handleBreadcrumbClick(item)"
+        >
             <n-icon>
                 <component :is="item.meta.icon"></component>
             </n-icon>
@@ -24,6 +28,10 @@ const breadcrumbList = computed(() => {
     });
     return result;
 });
+
+const handleBreadcrumbClick = ({ name }: RouteLocationMatched) => {
+    window.$router.push({ name });
+};
 </script>
 
 <style lang="scss" scoped></style>
