@@ -71,11 +71,6 @@ onBeforeUnmount(() => {
     height: 100vh;
 }
 
-.layout-header {
-    height: 50px;
-    padding: 0 15px;
-}
-
 .layout-content-container {
     height: v-bind(style_content_height);
 }
