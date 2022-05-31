@@ -1,0 +1,38 @@
+<template>
+    <n-tooltip>
+        <template #trigger>
+            <n-button text style="font-size: 24px" @click="handleScreenFullClick">
+                <n-icon>
+                    <full-screen-icon v-if="!isFullscreen" />
+                    <full-screen-exit-icon v-else />
+                </n-icon>
+            </n-button>
+        </template>
+        全屏
+    </n-tooltip>
+</template>
+
+<script lang="ts" setup>
+import { onMounted, ref } from "vue";
+import { NButton, NIcon, NTooltip } from "naive-ui";
+import screenfull from "screenfull";
+import {
+    FullscreenOutlined as FullScreenIcon,
+    FullscreenExitOutlined as FullScreenExitIcon,
+} from "@vicons/antd";
+
+const isFullscreen = ref(false);
+const handleScreenFullClick = () => {
+    if (screenfull.isEnabled) {
+        screenfull.toggle();
+    } else {
+        window.$message.error("全屏已被禁用或该浏览器不支持全屏");
+    }
+};
+
+onMounted(() => {
+    screenfull.on("change", () => {
+        isFullscreen.value = screenfull.isFullscreen;
+    });
+});
+</script>
