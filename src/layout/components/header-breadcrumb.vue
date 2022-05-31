@@ -5,7 +5,7 @@
             :key="item.name"
             @click="handleBreadcrumbClick(item)"
         >
-            <n-icon>
+            <n-icon v-if="item.meta.icon">
                 <component :is="item.meta.icon"></component>
             </n-icon>
             {{ item.meta.label }}
