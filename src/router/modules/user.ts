@@ -13,6 +13,7 @@ const userRoutes: RouteRecordRaw[] = [
             {
                 path: "userInfo",
                 name: "userInfo",
+                meta: { label: "个人信息" },
                 component: () => import("@/views/user/userInfo.vue"),
             },
         ],

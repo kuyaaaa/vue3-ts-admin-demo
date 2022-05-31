@@ -27,6 +27,7 @@ module.exports = {
         "no-unused-vars": ["warn", { varsIgnorePattern: "Window", args: "none" }],
         "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
         "no-continue": "off",
+        "no-bitwise": "off",
         "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
         "import/extensions": [
             2,

@@ -1,21 +1,16 @@
 <template>
-    <div class="header-controller-container">
+    <n-space align="center" size="small">
+        <route-search />
         <fullscreen-btn />
         <theme-switch />
-    </div>
+    </n-space>
 </template>
 
 <script lang="ts" setup>
+import { NSpace } from "naive-ui";
 import ThemeSwitch from "./theme-switch.vue";
 import FullscreenBtn from "./fullscreen-btn.vue";
+import RouteSearch from "./route-search.vue";
 </script>
 
-<style lang="scss" scoped>
-.header-controller-container {
-    @include flex-center-main-cross;
-
-    > * + * {
-        margin-left: 8px;
-    }
-}
-</style>
+<style lang="scss" scoped></style>
