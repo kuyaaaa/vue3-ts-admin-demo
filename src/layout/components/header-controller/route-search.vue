@@ -21,6 +21,8 @@ import type { RouteRecordRaw } from "vue-router";
 import { cloneDeep, replace } from "lodash";
 
 const loading = ref(false);
+/** 菜单列表的路径分隔符 */
+const DIVIDER_KEY = ">";
 
 const ROUTES = window.$router.options.routes;
 const dealRouteChildren = (routeChildren: RouteRecordRaw[], fatherLabel: string | undefined) => {
@@ -29,7 +31,7 @@ const dealRouteChildren = (routeChildren: RouteRecordRaw[], fatherLabel: string 
     routeChildren.forEach(child => {
         if (child.meta?.label) {
             const thisLabel = fatherLabel
-                ? `${fatherLabel} > ${child.meta.label}`
+                ? `${fatherLabel} ${DIVIDER_KEY} ${child.meta.label}`
                 : child.meta.label;
             if (child.children) {
                 resultList.push(...dealRouteChildren(child.children, thisLabel));
