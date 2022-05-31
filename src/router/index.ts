@@ -6,6 +6,7 @@ import Error404 from "@/views/errors/404.vue";
 import Error403 from "@/views/errors/403.vue";
 import userRoutes from "./modules/user";
 import exampleRoutes from "./modules/example";
+import errorRoutes from "./modules/error";
 
 export const routes: RouteRecordRaw[] = [
     {
@@ -47,6 +48,7 @@ export const routes: RouteRecordRaw[] = [
         component: Error403,
     },
     ...userRoutes,
+    ...errorRoutes,
     ...exampleRoutes,
 ];
 
