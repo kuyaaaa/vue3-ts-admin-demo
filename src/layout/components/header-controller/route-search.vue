@@ -18,7 +18,7 @@ import { ref } from "vue";
 import { NSelect } from "naive-ui";
 import type { SelectOption } from "naive-ui";
 import type { RouteRecordRaw } from "vue-router";
-import { cloneDeep, replace } from "lodash";
+import { cloneDeep, replace, debounce } from "lodash";
 
 const loading = ref(false);
 /** 菜单列表的路径分隔符 */
@@ -67,15 +67,15 @@ const makeOptions = () => {
 const fullRoutesOptions = makeOptions();
 const options = ref(cloneDeep(fullRoutesOptions));
 
-const handleSearch = (query: string) => {
+const handleSearch = debounce((query: string) => {
+    loading.value = true;
     if (!query.length) {
         options.value = fullRoutesOptions;
-        return;
+    } else {
+        options.value = fullRoutesOptions.filter(item => ~String(item.label).indexOf(query));
     }
-    loading.value = true;
-    options.value = fullRoutesOptions.filter(item => ~String(item.label).indexOf(query));
     loading.value = false;
-};
+}, 200);
 
 const handleSelect = (value: string) => {
     if (!value) {
