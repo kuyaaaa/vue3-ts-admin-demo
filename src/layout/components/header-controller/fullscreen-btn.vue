@@ -14,7 +14,6 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
-import { NButton, NIcon, NTooltip } from "naive-ui";
 import screenfull from "screenfull";
 import {
     FullscreenOutlined as FullScreenIcon,

@@ -23,7 +23,6 @@
 </template>
 
 <script lang="ts" setup>
-import { NLayout, NLayoutHeader, NLayoutContent } from "naive-ui";
 import { onBeforeUnmount, onMounted, ref } from "vue";
 import { throttle } from "lodash";
 import HeaderContent from "./content/header.vue";

@@ -33,7 +33,6 @@
 
 <script lang="ts" setup>
 import { computed, ref } from "vue";
-import { NLayoutSider, NMenu, NSpace, NImage, NText, NDivider } from "naive-ui";
 import useMenuStore from "@/store/modules/menu";
 
 const emit = defineEmits<{

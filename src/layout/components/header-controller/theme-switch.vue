@@ -12,7 +12,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import { darkTheme, NSwitch } from "naive-ui";
+import { darkTheme } from "naive-ui";
 import useSystemStore from "@/store/modules/system";
 
 const systemStore = useSystemStore();

@@ -57,19 +57,7 @@
 
 <script lang="ts" setup>
 import { h, reactive, ref } from "vue";
-import {
-    NCard,
-    NGrid,
-    NGi,
-    NDataTable,
-    NIcon,
-    NButton,
-    NInput,
-    NInputGroup,
-    NDatePicker,
-    NTimePicker,
-} from "naive-ui";
-import type { PaginationProps, DataTableColumns } from "naive-ui";
+import { PaginationProps, DataTableColumns, NButton } from "naive-ui";
 import {
     Search as SearchIcon,
     Add as AddIcon,

@@ -45,7 +45,6 @@
 
 <script lang="ts" setup>
 import { ref, watch } from "vue";
-import { NCard, NForm, NFormItem, NInput, NButton, NUpload, NAvatar, NSpace } from "naive-ui";
 import type { FormInst, UploadFileInfo } from "naive-ui";
 import { storeToRefs } from "pinia";
 import { cloneDeep } from "lodash";

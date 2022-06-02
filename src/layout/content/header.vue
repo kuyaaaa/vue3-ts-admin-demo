@@ -10,7 +10,6 @@
 </template>
 
 <script lang="ts" setup>
-import { NSpace, NDivider } from "naive-ui";
 import HeaderController from "../components/header-controller/index.vue";
 import HeaderUser from "../components/header-user.vue";
 import HeaderBreadcrumb from "../components/header-breadcrumb.vue";

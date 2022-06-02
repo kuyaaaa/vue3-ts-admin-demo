@@ -7,8 +7,6 @@
 </template>
 
 <script lang="ts" setup>
-import { NResult, NButton } from "naive-ui";
-
 const handleReturn = () => {
     window.$router.back();
 };

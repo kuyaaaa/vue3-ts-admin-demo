@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { NMessageProvider, NDialogProvider, NConfigProvider, zhCN, dateZhCN } from "naive-ui";
+import { zhCN, dateZhCN } from "naive-ui";
 import { storeToRefs } from "pinia";
 import hljs from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";

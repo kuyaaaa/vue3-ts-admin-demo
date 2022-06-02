@@ -6,12 +6,12 @@
 
 <script lang="ts" setup>
 import { h } from "vue";
-import { NAvatar, NDropdown, NText } from "naive-ui";
 import {
     PersonCircleOutline as PersonCircleOutlineIcon,
     LogInOutline as LogInOutlineIcon,
 } from "@vicons/ionicons5";
 import { storeToRefs } from "pinia";
+import { NText } from "naive-ui";
 import useLoginStore from "@/store/modules/login";
 import { renderIcon } from "@/utils/render";
 

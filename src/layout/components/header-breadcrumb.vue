@@ -15,7 +15,6 @@
 
 <script lang="ts" setup>
 import { computed } from "vue";
-import { NBreadcrumb, NBreadcrumbItem, NIcon } from "naive-ui";
 import type { RouteLocationMatched } from "vue-router";
 
 const breadcrumbList = computed(() => {

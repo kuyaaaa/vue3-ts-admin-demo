@@ -44,7 +44,6 @@
 </template>
 
 <script lang="ts" setup>
-import { NCard, NH1, NForm, NFormItem, NInput, NIcon, NButton } from "naive-ui";
 import type { FormInst } from "naive-ui";
 import { Person, LockClosed, LogIn as loginIcon } from "@vicons/ionicons5";
 import { ref } from "vue";

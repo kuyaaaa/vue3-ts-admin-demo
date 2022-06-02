@@ -18,8 +18,6 @@
 </template>
 
 <script lang="ts" setup>
-import { NCard, NCode, NP, NText, NBlockquote } from "naive-ui";
-
 const oneRouteCode = `{
     path: "/one",
     component: Layout,

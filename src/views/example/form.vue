@@ -63,20 +63,6 @@
 
 <script lang="ts" setup>
 import { ref, computed } from "vue";
-import {
-    NCard,
-    NForm,
-    NFormItem,
-    NInput,
-    NAutoComplete,
-    NRadioGroup,
-    NRadio,
-    NSpace,
-    NButton,
-    NDatePicker,
-    NCheckboxGroup,
-    NCheckbox,
-} from "naive-ui";
 import type { FormInst, FormRules } from "naive-ui";
 import { cloneDeep } from "lodash";
 
