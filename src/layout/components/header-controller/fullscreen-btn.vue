@@ -8,12 +8,12 @@
                 </n-icon>
             </n-button>
         </template>
-        全屏
+        {{ tooltipText }}
     </n-tooltip>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import screenfull from "screenfull";
 import {
     FullscreenOutlined as FullScreenIcon,
@@ -21,6 +21,7 @@ import {
 } from "@vicons/antd";
 
 const isFullscreen = ref(false);
+const tooltipText = computed(() => (isFullscreen.value ? "退出全屏" : "全屏"));
 const handleScreenFullClick = () => {
     if (screenfull.isEnabled) {
         screenfull.toggle();
