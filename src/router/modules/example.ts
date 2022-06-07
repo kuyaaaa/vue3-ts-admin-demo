@@ -10,6 +10,7 @@ import {
     DocumentTextOutline as DocumentTextOutlineIcon,
     Link as LinkIcon,
     GitCommitOutline as GitCommitOutlineIcon,
+    AddCircleOutline as AddCircleOutlineIcon,
 } from "@vicons/ionicons5";
 import Layout from "@/layout/index.vue";
 import MultistageRouterLayout from "@/components/multistage-router-layout.vue";
@@ -25,8 +26,14 @@ const userRoutes: RouteRecordRaw[] = [
             {
                 path: "table",
                 name: "exampleTable",
-                component: () => import("@/views/example/table.vue"),
+                component: () => import("@/views/example/table/index.vue"),
                 meta: { label: "数据表格", icon: BorderlessTableOutlinedIcon },
+            },
+            {
+                path: "table/add",
+                name: "exampleTableAdd",
+                component: () => import("@/views/example/table/add.vue"),
+                meta: { label: "新增数据", hidden: true, icon: AddCircleOutlineIcon },
             },
             {
                 path: "form",

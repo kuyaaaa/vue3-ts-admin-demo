@@ -21,7 +21,7 @@ const breadcrumbList = computed(() => {
     const { matched } = window.$router.currentRoute.value;
     const result: RouteLocationMatched[] = [];
     matched.forEach(item => {
-        if (item.path !== "/" && !item.meta.hidden && item.meta.label) {
+        if (item.path !== "/" && item.meta.label) {
             result.push(item);
         }
     });

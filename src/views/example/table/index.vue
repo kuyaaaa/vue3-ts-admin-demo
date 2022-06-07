@@ -142,7 +142,7 @@ const handleSearch = () => {
 };
 
 const handleAdd = () => {
-    window.$message.success(`add click`);
+    window.$router.push({ name: "exampleTableAdd" });
 };
 
 const handleExport = () => {
