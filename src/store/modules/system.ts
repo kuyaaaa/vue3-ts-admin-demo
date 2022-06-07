@@ -18,7 +18,7 @@ const useSystemStore = defineStore({
     },
     actions: {
         getSystemConfig() {
-            this.config = JSON.parse(window.localStorage.getItem(SYSTEM_CONFIG) || "");
+            this.config = JSON.parse(window.localStorage.getItem(SYSTEM_CONFIG) || "{}");
         },
         setSystemConfig() {
             window.localStorage.setItem(SYSTEM_CONFIG, JSON.stringify(this.config));
