@@ -11,15 +11,16 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
-import { darkTheme } from "naive-ui";
+import { computed } from "vue";
 import useSystemStore from "@/store/modules/system";
 
 const systemStore = useSystemStore();
 
 // 主题切换按钮
-const themeSwitchValue = ref(false);
+const themeSwitchValue = computed(() => systemStore.config.theme === "dark");
+
 const handleThemeChange = (isDark: boolean) => {
-    systemStore.theme = isDark ? darkTheme : null;
+    systemStore.config.theme = isDark ? "dark" : "normal";
+    systemStore.setSystemConfig();
 };
 </script>
