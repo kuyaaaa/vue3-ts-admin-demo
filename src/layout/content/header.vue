@@ -22,7 +22,7 @@ import HeaderBreadcrumb from "../components/header-breadcrumb.vue";
 }
 
 .bread-container {
-    height: 40px;
+    height: 30px;
     padding: 0 10px;
     @include flex-center-main;
 }
