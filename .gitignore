@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+# naive-ui component build
+components.d.ts
 
 # Editor directories and files
 !.vscode/extensions.json
