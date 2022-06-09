@@ -1,6 +1,6 @@
 <template>
     <n-switch
-        v-model:value="themeSwitchValue"
+        :value="themeSwitchValue"
         :round="false"
         size="medium"
         @update:value="handleThemeChange"

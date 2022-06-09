@@ -1,11 +1,9 @@
 // 路由守卫
 import NProgress from "nprogress";
 import "@/assets/styles/nprogress.scss";
-import { isEmpty } from "lodash";
 import router from "./index";
 import { getToken } from "@/utils/token";
 import useLoginStore from "@/store/modules/login";
-import useSystemStore from "@/store/modules/system";
 import { TOKEN } from "@/utils/static";
 
 // nprogress配置
@@ -15,15 +13,9 @@ NProgress.configure({ showSpinner: false });
 const whiteList = ["/login", "/404", "/403"];
 
 router.beforeEach(async (to, from, next) => {
-    const loginStore = useLoginStore();
-
-    // 获取系统设置
-    const systemStore = useSystemStore();
-    if (isEmpty(systemStore.config)) {
-        systemStore.getSystemConfig();
-    }
-
     NProgress.start();
+
+    const loginStore = useLoginStore();
     /** token */
     const token = loginStore[TOKEN] || getToken();
     /** 用户名（用于判断是否获取过用户信息） */

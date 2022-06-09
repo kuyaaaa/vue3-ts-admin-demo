@@ -13,12 +13,17 @@ import { computed } from "vue";
 import { zhCN, dateZhCN, darkTheme } from "naive-ui";
 import hljs from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";
+import { isEmpty } from "lodash";
 import GlobalContainer from "@/layout/global.vue";
 import useSystemStore from "@/store/modules/system";
 
 hljs.registerLanguage("javascript", javascript);
 
 const systemStore = useSystemStore();
+// 获取系统设置
+if (isEmpty(systemStore.config)) {
+    systemStore.getSystemConfig();
+}
 const theme = computed(() => (systemStore.config.theme === "dark" ? darkTheme : null));
 </script>
 
