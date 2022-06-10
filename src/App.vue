@@ -28,12 +28,16 @@ import useSystemStore from "@/store/modules/system";
 hljs.registerLanguage("javascript", javascript);
 
 const systemStore = useSystemStore();
+const { themeOverridesCommon, config } = storeToRefs(systemStore);
+
 // 获取系统设置
-if (isEmpty(systemStore.config)) {
+if (isEmpty(config.value)) {
     systemStore.getSystemConfig();
 }
-const theme = computed(() => (systemStore.config.theme === "dark" ? darkTheme : null));
-const { themeOverridesCommon } = storeToRefs(systemStore);
+const theme = computed(() => (config.value.theme === "dark" ? darkTheme : null));
+
+// 获取主题配置
+systemStore.getThemeOverridesCommon();
 </script>
 
 <style lang="scss">

@@ -82,6 +82,7 @@ const handleSave = () => {
         ...systemStore.themeOverridesCommon,
         ...config.value,
     };
+    systemStore.setThemeOverridesCommon();
     show.value = false;
 };
 
