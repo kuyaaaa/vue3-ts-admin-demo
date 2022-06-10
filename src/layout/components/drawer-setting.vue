@@ -46,6 +46,12 @@
                     </n-collapse-item>
                 </n-collapse>
             </n-config-provider>
+            <template #footer>
+                <n-space>
+                    <n-button type="error" ghost>取消</n-button>
+                    <n-button type="success" ghost @click="handleSave">保存</n-button>
+                </n-space>
+            </template>
         </n-drawer-content>
     </n-drawer>
 </template>
@@ -69,7 +75,14 @@ const show = computed<boolean>({
 });
 
 const systemStore = useSystemStore();
-const config = ref(cloneDeep(systemStore.config.themeOverridesCommon || defaultThemeCommonConfig));
+const config = ref(cloneDeep(systemStore.themeOverridesCommon || defaultThemeCommonConfig));
+
+const handleSave = () => {
+    systemStore.themeOverridesCommon = {
+        ...systemStore.themeOverridesCommon,
+        ...config.value,
+    };
+};
 </script>
 
 <style lang="scss" scoped>

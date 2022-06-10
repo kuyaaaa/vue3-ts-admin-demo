@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import type { GlobalThemeOverrides } from "naive-ui";
 import { SYSTEM_CONFIG } from "@/utils/static";
 import { SystemConfig } from "@/types/config";
 import { defaultThemeCommonConfig } from "@/config/theme";
@@ -16,7 +17,7 @@ const useSystemStore = defineStore({
             /** 设置相关 */
             config: {} as SystemConfig,
             /** 主题变量 */
-            themeOverridesCommon: defaultThemeCommonConfig,
+            themeOverridesCommon: defaultThemeCommonConfig as GlobalThemeOverrides,
         };
     },
     actions: {
