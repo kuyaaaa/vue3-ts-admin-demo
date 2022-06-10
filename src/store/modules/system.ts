@@ -17,7 +17,7 @@ const useSystemStore = defineStore({
             /** 设置相关 */
             config: {} as SystemConfig,
             /** 主题变量 */
-            themeOverridesCommon: {} as GlobalThemeOverrides,
+            themeOverridesCommon: {} as GlobalThemeOverrides["common"],
         };
     },
     actions: {

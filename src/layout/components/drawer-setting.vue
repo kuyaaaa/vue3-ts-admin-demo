@@ -44,6 +44,78 @@
                             </n-grid>
                         </n-space>
                     </n-collapse-item>
+                    <n-collapse-item title="滚动条样式" name="scrollBar">
+                        <n-grid x-gap="12" y-gap="8" :cols="5">
+                            <n-gi :span="5">
+                                <n-scrollbar style="max-height: 120px" trigger="none">
+                                    <n-p v-for="num in 20" :key="num">俺是一行文字哦~</n-p>
+                                </n-scrollbar>
+                            </n-gi>
+                            <n-gi :span="2">
+                                <n-text>滚动条宽度</n-text>
+                            </n-gi>
+                            <n-gi :span="3">
+                                <n-input-number
+                                    :value="config['scrollbarWidth']!.replace(/px/, '')"
+                                    :on-update:value="(input:number) => {
+                                        config['scrollbarWidth'] = `${input}px`
+                                    }"
+                                >
+                                    <template #suffix>px</template>
+                                </n-input-number>
+                            </n-gi>
+                            <n-gi :span="2">
+                                <n-text>滚动条高度</n-text>
+                            </n-gi>
+                            <n-gi :span="3">
+                                <n-input-number
+                                    :value="config['scrollbarHeight']!.replace(/px/, '')"
+                                    :on-update:value="(input:number) => {
+                                        config['scrollbarHeight'] = `${input}px`
+                                    }"
+                                >
+                                    <template #suffix>px</template>
+                                </n-input-number>
+                            </n-gi>
+                            <n-gi :span="2">
+                                <n-text>滚动条圆角</n-text>
+                            </n-gi>
+                            <n-gi :span="3">
+                                <n-input-number
+                                    :value="config['scrollbarBorderRadius']!.replace(/px/, '')"
+                                    :on-update:value="(input:number) => {
+                                        config['scrollbarBorderRadius'] = `${input}px`
+                                    }"
+                                >
+                                    <template #suffix>px</template>
+                                </n-input-number>
+                            </n-gi>
+                            <n-gi :span="2">
+                                <n-text>滚动条颜色</n-text>
+                            </n-gi>
+                            <n-gi :span="3">
+                                <n-color-picker
+                                    v-model:value="
+                                        // @ts-ignore
+                                        config['scrollbarColor']
+                                    "
+                                    :modes="['rgb']"
+                                />
+                            </n-gi>
+                            <n-gi :span="2">
+                                <n-text>滚动条悬浮颜色</n-text>
+                            </n-gi>
+                            <n-gi :span="3">
+                                <n-color-picker
+                                    v-model:value="
+                                        // @ts-ignore
+                                        config['scrollbarColorHover']
+                                    "
+                                    :modes="['rgb']"
+                                />
+                            </n-gi>
+                        </n-grid>
+                    </n-collapse-item>
                 </n-collapse>
             </n-config-provider>
             <template #footer>
