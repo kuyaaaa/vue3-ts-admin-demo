@@ -1,5 +1,12 @@
 <template>
-    <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN" :hljs="hljs" abstract>
+    <n-config-provider
+        :theme="theme"
+        :theme-overrides="{ common: themeOverridesCommon }"
+        :locale="zhCN"
+        :date-locale="dateZhCN"
+        :hljs="hljs"
+        abstract
+    >
         <n-message-provider>
             <n-dialog-provider>
                 <global-container />
@@ -14,6 +21,7 @@ import { zhCN, dateZhCN, darkTheme } from "naive-ui";
 import hljs from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";
 import { isEmpty } from "lodash";
+import { storeToRefs } from "pinia";
 import GlobalContainer from "@/layout/global.vue";
 import useSystemStore from "@/store/modules/system";
 
@@ -25,6 +33,7 @@ if (isEmpty(systemStore.config)) {
     systemStore.getSystemConfig();
 }
 const theme = computed(() => (systemStore.config.theme === "dark" ? darkTheme : null));
+const { themeOverridesCommon } = storeToRefs(systemStore);
 </script>
 
 <style lang="scss">
