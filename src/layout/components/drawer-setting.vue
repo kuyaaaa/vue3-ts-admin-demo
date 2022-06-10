@@ -56,7 +56,7 @@
                             </n-gi>
                             <n-gi :span="3">
                                 <n-input-number
-                                    :value="config['scrollbarWidth']!.replace(/px/, '')"
+                                    :value="Number(config['scrollbarWidth']!.replace(/px/, ''))"
                                     :on-update:value="(input:number) => {
                                         config['scrollbarWidth'] = `${input}px`
                                     }"
@@ -69,7 +69,7 @@
                             </n-gi>
                             <n-gi :span="3">
                                 <n-input-number
-                                    :value="config['scrollbarHeight']!.replace(/px/, '')"
+                                    :value="Number(config['scrollbarHeight']!.replace(/px/, ''))"
                                     :on-update:value="(input:number) => {
                                         config['scrollbarHeight'] = `${input}px`
                                     }"
@@ -82,7 +82,7 @@
                             </n-gi>
                             <n-gi :span="3">
                                 <n-input-number
-                                    :value="config['scrollbarBorderRadius']!.replace(/px/, '')"
+                                    :value="Number(config['scrollbarBorderRadius']!.replace(/px/, ''))"
                                     :on-update:value="(input:number) => {
                                         config['scrollbarBorderRadius'] = `${input}px`
                                     }"
