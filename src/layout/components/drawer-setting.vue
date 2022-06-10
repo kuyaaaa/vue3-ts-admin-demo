@@ -1,5 +1,5 @@
 <template>
-    <n-drawer v-model:show="show" :width="420">
+    <n-drawer v-model:show="show" :width="420" :auto-focus="false">
         <n-drawer-content title="系统设置" :native-scrollbar="false" closable>
             <n-config-provider :theme-overrides="{ common: config }">
                 <n-divider title-placement="left">主题样式</n-divider>
@@ -48,7 +48,7 @@
             </n-config-provider>
             <template #footer>
                 <n-space>
-                    <n-button type="error" ghost>取消</n-button>
+                    <n-button type="error" ghost @click="handleCancel">取消</n-button>
                     <n-button type="success" ghost @click="handleSave">保存</n-button>
                 </n-space>
             </template>
@@ -82,6 +82,12 @@ const handleSave = () => {
         ...systemStore.themeOverridesCommon,
         ...config.value,
     };
+    show.value = false;
+};
+
+const handleCancel = () => {
+    show.value = false;
+    config.value = cloneDeep(systemStore.themeOverridesCommon || defaultThemeCommonConfig);
 };
 </script>
 
