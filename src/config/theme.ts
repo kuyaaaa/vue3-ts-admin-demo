@@ -57,3 +57,14 @@ export const defaultThemeCommonConfig = {
     ...defaultErrorColor,
     ...defaultScroll,
 };
+
+/** 颜色字段集合 hover、pressed、suppl等 */
+export const colorKeyList = [
+    { name: "基础颜色", key: "Color" },
+    { name: "hover颜色", key: "ColorHover" },
+    { name: "pressed颜色", key: "ColorPressed" },
+    { name: "suppl颜色", key: "ColorSuppl" },
+];
+
+/** 颜色类型集合 primary、info、success等 */
+export const colorTypeList = ["primary", "info", "success", "warning", "error"];

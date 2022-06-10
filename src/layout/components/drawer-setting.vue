@@ -3,27 +3,27 @@
         <n-drawer-content title="系统设置" closable>
             <n-config-provider :theme-overrides="{ common: config }">
                 <n-divider title-placement="left">主题样式</n-divider>
-                <n-collapse>
+                <n-collapse :default-expanded-names="[colorTypeList[0]]">
                     <n-collapse-item
-                        v-for="themeConfigItem in themeConfigList"
-                        :key="themeConfigItem.baseKey"
-                        :title="`type = [${themeConfigItem.baseKey}]`"
-                        :name="themeConfigItem.baseKey"
+                        v-for="colorType in colorTypeList"
+                        :key="colorType"
+                        :title="`${colorType}类型`"
+                        :name="colorType"
                     >
                         <n-space vertical>
                             <n-space>
-                                <n-button :type="themeConfigItem.baseKey">
-                                    {{ themeConfigItem.baseKey }}
+                                <n-button :type="colorType">
+                                    {{ colorType }}
                                 </n-button>
-                                <n-button :type="themeConfigItem.baseKey" secondary>
-                                    {{ themeConfigItem.baseKey }}
+                                <n-button :type="colorType" secondary>
+                                    {{ colorType }}
                                 </n-button>
-                                <n-button :type="themeConfigItem.baseKey" ghost>
-                                    {{ themeConfigItem.baseKey }}
+                                <n-button :type="colorType" ghost>
+                                    {{ colorType }}
                                 </n-button>
                             </n-space>
                             <n-grid
-                                v-for="themeConfigOpt in themeConfigItem.configList"
+                                v-for="themeConfigOpt in colorKeyList"
                                 :key="themeConfigOpt.key"
                                 x-gap="12"
                                 y-gap="8"
@@ -36,7 +36,7 @@
                                     <n-color-picker
                                         v-model:value="
                                             // @ts-ignore
-                                            config[themeConfigItem.baseKey + themeConfigOpt.key]
+                                            config[colorType + themeConfigOpt.key]
                                         "
                                         :modes="['hex']"
                                     />
@@ -54,55 +54,7 @@
 import { ref, computed } from "vue";
 import { cloneDeep } from "lodash";
 import useSystemStore from "@/store/modules/system";
-import { defaultThemeCommonConfig } from "@/config/theme";
-
-const themeConfigList = [
-    {
-        baseKey: "primary",
-        configList: [
-            { name: "基础颜色", key: "Color" },
-            { name: "hover颜色", key: "ColorHover" },
-            { name: "pressed颜色", key: "ColorPressed" },
-            { name: "suppl颜色", key: "ColorSuppl" },
-        ],
-    },
-    {
-        baseKey: "info",
-        configList: [
-            { name: "基础颜色", key: "Color" },
-            { name: "hover颜色", key: "ColorHover" },
-            { name: "pressed颜色", key: "ColorPressed" },
-            { name: "suppl颜色", key: "ColorSuppl" },
-        ],
-    },
-    {
-        baseKey: "success",
-        configList: [
-            { name: "基础颜色", key: "Color" },
-            { name: "hover颜色", key: "ColorHover" },
-            { name: "pressed颜色", key: "ColorPressed" },
-            { name: "suppl颜色", key: "ColorSuppl" },
-        ],
-    },
-    {
-        baseKey: "warning",
-        configList: [
-            { name: "基础颜色", key: "Color" },
-            { name: "hover颜色", key: "ColorHover" },
-            { name: "pressed颜色", key: "ColorPressed" },
-            { name: "suppl颜色", key: "ColorSuppl" },
-        ],
-    },
-    {
-        baseKey: "error",
-        configList: [
-            { name: "基础颜色", key: "Color" },
-            { name: "hover颜色", key: "ColorHover" },
-            { name: "pressed颜色", key: "ColorPressed" },
-            { name: "suppl颜色", key: "ColorSuppl" },
-        ],
-    },
-];
+import { defaultThemeCommonConfig, colorKeyList, colorTypeList } from "@/config/theme";
 
 const props = defineProps<{ show: boolean }>();
 const emit = defineEmits<{ (event: "update:show", show: boolean): void }>();
