@@ -55,40 +55,28 @@
                                 <n-text>滚动条宽度</n-text>
                             </n-gi>
                             <n-gi :span="3">
-                                <n-input-number
-                                    :value="Number(config['scrollbarWidth']!.replace(/px/, ''))"
-                                    :on-update:value="(input:number) => {
-                                        config['scrollbarWidth'] = `${input}px`
-                                    }"
-                                >
-                                    <template #suffix>px</template>
-                                </n-input-number>
+                                <input-number-suffix
+                                    v-model:value="config['scrollbarWidth']"
+                                    suffix="px"
+                                />
                             </n-gi>
                             <n-gi :span="2">
                                 <n-text>滚动条高度</n-text>
                             </n-gi>
                             <n-gi :span="3">
-                                <n-input-number
-                                    :value="Number(config['scrollbarHeight']!.replace(/px/, ''))"
-                                    :on-update:value="(input:number) => {
-                                        config['scrollbarHeight'] = `${input}px`
-                                    }"
-                                >
-                                    <template #suffix>px</template>
-                                </n-input-number>
+                                <input-number-suffix
+                                    v-model:value="config['scrollbarHeight']"
+                                    suffix="px"
+                                />
                             </n-gi>
                             <n-gi :span="2">
                                 <n-text>滚动条圆角</n-text>
                             </n-gi>
                             <n-gi :span="3">
-                                <n-input-number
-                                    :value="Number(config['scrollbarBorderRadius']!.replace(/px/, ''))"
-                                    :on-update:value="(input:number) => {
-                                        config['scrollbarBorderRadius'] = `${input}px`
-                                    }"
-                                >
-                                    <template #suffix>px</template>
-                                </n-input-number>
+                                <input-number-suffix
+                                    v-model:value="config['scrollbarBorderRadius']"
+                                    suffix="px"
+                                />
                             </n-gi>
                             <n-gi :span="2">
                                 <n-text>滚动条颜色</n-text>
