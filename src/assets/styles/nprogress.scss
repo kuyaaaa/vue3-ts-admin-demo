@@ -1,13 +1,11 @@
 // nprogress样式修改
 /* Make clicks pass-through */
-$nprogress-color: #18a058;
-
 #nprogress {
     pointer-events: none;
   }
   
   #nprogress .bar {
-    background: $nprogress-color;
+    background: var(--base-color);
   
     position: fixed;
     z-index: 1031;
@@ -25,7 +23,7 @@ $nprogress-color: #18a058;
     right: 0px;
     width: 100px;
     height: 100%;
-    box-shadow: 0 0 10px $nprogress-color, 0 0 5px $nprogress-color;
+    box-shadow: 0 0 10px var(--base-color), 0 0 5px var(--base-color);
     opacity: 1.0;
   
     -webkit-transform: rotate(3deg) translate(0px, -4px);
@@ -48,8 +46,8 @@ $nprogress-color: #18a058;
     box-sizing: border-box;
   
     border: solid 2px transparent;
-    border-top-color: $nprogress-color;
-    border-left-color: $nprogress-color;
+    border-top-color: var(--base-color);
+    border-left-color: var(--base-color);
     border-radius: 50%;
   
     -webkit-animation: nprogress-spinner 400ms linear infinite;

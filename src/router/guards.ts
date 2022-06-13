@@ -5,9 +5,13 @@ import router from "./index";
 import { getToken } from "@/utils/token";
 import useLoginStore from "@/store/modules/login";
 import { TOKEN } from "@/utils/static";
+import { defaultPrimaryColor } from "@/config/theme";
 
 // nprogress配置
-NProgress.configure({ showSpinner: false });
+NProgress.configure({
+    showSpinner: false,
+    template: `<div class="bar" style="--base-color: ${defaultPrimaryColor.primaryColor}" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>`,
+});
 
 /** 白名单 直接跳过的路由路径 */
 const whiteList = ["/login", "/404", "/403"];

@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import type { GlobalThemeOverrides } from "naive-ui";
+import NProgress from "nprogress";
 import { SYSTEM_CONFIG, SYSTEM_THEME_COMMON } from "@/utils/static";
 import { SystemConfig } from "@/types/config";
 import { defaultThemeCommonConfig } from "@/config/theme";
@@ -36,6 +37,7 @@ const useSystemStore = defineStore({
             this.themeOverridesCommon = themeConfig
                 ? JSON.parse(themeConfig)
                 : defaultThemeCommonConfig;
+            this.setNprogressBaseColor();
         },
         /** 存储本地自定义主题记录 */
         setThemeOverridesCommon() {
@@ -43,6 +45,17 @@ const useSystemStore = defineStore({
                 SYSTEM_THEME_COMMON,
                 JSON.stringify(this.themeOverridesCommon)
             );
+            this.setNprogressBaseColor();
+        },
+        /** 修改nprogress基础颜色 */
+        setNprogressBaseColor(color: string = "") {
+            const baseColor =
+                color ||
+                this.themeOverridesCommon?.primaryColor ||
+                defaultThemeCommonConfig.primaryColor;
+            NProgress.configure({
+                template: `<div class="bar" style="--base-color: ${baseColor}" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>`,
+            });
         },
     },
 });
