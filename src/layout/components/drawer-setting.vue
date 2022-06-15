@@ -83,10 +83,7 @@
                             </n-gi>
                             <n-gi :span="3">
                                 <n-color-picker
-                                    v-model:value="
-                                        // @ts-ignore
-                                        config['scrollbarColor']
-                                    "
+                                    v-model:value="config['scrollbarColor']"
                                     :modes="['rgb']"
                                 />
                             </n-gi>
@@ -95,10 +92,7 @@
                             </n-gi>
                             <n-gi :span="3">
                                 <n-color-picker
-                                    v-model:value="
-                                        // @ts-ignore
-                                        config['scrollbarColorHover']
-                                    "
+                                    v-model:value="config['scrollbarColorHover']"
                                     :modes="['rgb']"
                                 />
                             </n-gi>

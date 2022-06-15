@@ -2,9 +2,11 @@
     <n-input-number
         v-bind="$attrs"
         :value="Number(inputValue)"
-        :on-update:value="(input: number) => {
-            inputValue = `${input}${props.suffix}`
-        }"
+        :on-update:value="
+            input => {
+                inputValue = `${input}${props.suffix}`;
+            }
+        "
     >
         <template #suffix>{{ suffix }}</template>
     </n-input-number>
@@ -26,13 +28,13 @@
 import { computed } from "vue";
 
 const props = defineProps<{
-    value: string;
+    value?: string;
     suffix: string;
 }>();
 const emit = defineEmits<{ (event: "update:value", value: string): void }>();
 
 const inputValue = computed({
-    get: () => props.value.replace(props.suffix, ""),
+    get: () => (props.value ? props.value.replace(props.suffix, "") : ""),
     set: val => {
         emit("update:value", val);
     },
