@@ -7,14 +7,8 @@ body,
 }
 
 .card-container {
-    border-radius: 8px;
-
     + .card-container {
         margin-top: 10px;
-    }
-
-    .n-form {
-        max-width: 640px;
     }
 }
 
