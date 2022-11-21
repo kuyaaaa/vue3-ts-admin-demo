@@ -6,31 +6,6 @@ body,
     height: 100vh;
 }
 
-.card-container {
-    .n-space + .n-space {
-        margin-top: 10px;
-    }
-
-    + .card-container {
-        margin-top: 10px;
-    }
-}
-
-// 文字不换行
-.text-nowrap {
-    word-break: keep-all;
-    white-space: nowrap;
-}
-
-// 表单按钮行容器
-.form-btn-container {
-    text-align: center;
-
-    button + button {
-        margin-left: 10px;
-    }
-}
-
 .n-text.n-text--code {
     margin: 0 3px;
 }

@@ -52,11 +52,10 @@
                     placeholder="这个人很懒，什么都没有留下！"
                 />
             </n-form-item>
-
-            <div class="form-btn-container">
+            <n-space justify="center">
                 <n-button type="primary" @click="handleSubmit">提交</n-button>
                 <n-button type="error" @click="handleReset">重置</n-button>
-            </div>
+            </n-space>
         </n-form>
     </n-card>
 </template>

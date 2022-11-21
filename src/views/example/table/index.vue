@@ -1,52 +1,56 @@
 <template>
-    <n-card class="card-container">
-        <n-space>
-            <n-input
-                v-model:value="searchParams.keyword"
-                type="text"
-                clearable
-                placeholder="请输入关键字"
+    <n-space vertical>
+        <n-card>
+            <n-space vertical>
+                <n-space>
+                    <n-input
+                        v-model:value="searchParams.keyword"
+                        type="text"
+                        clearable
+                        placeholder="请输入关键字"
+                    />
+                    <n-input-group>
+                        <n-date-picker v-model:value="searchParams.date" clearable />
+                        <n-time-picker v-model:value="searchParams.time" clearable />
+                    </n-input-group>
+                    <n-button type="primary" @click="handleSearch">
+                        <template #icon>
+                            <n-icon>
+                                <search-icon />
+                            </n-icon>
+                        </template>
+                        搜索
+                    </n-button>
+                </n-space>
+                <n-space>
+                    <n-button type="info" @click="handleExport">
+                        <template #icon>
+                            <n-icon>
+                                <download-icon />
+                            </n-icon>
+                        </template>
+                        导出内容
+                    </n-button>
+                    <n-button type="info" @click="handleAdd">
+                        <template #icon>
+                            <n-icon>
+                                <add-icon />
+                            </n-icon>
+                        </template>
+                        新增
+                    </n-button>
+                </n-space>
+            </n-space>
+        </n-card>
+        <n-card>
+            <n-data-table
+                :columns="columns"
+                :data="data"
+                :single-line="false"
+                :pagination="pagination"
             />
-            <n-input-group>
-                <n-date-picker v-model:value="searchParams.date" clearable />
-                <n-time-picker v-model:value="searchParams.time" clearable />
-            </n-input-group>
-            <n-button type="primary" @click="handleSearch">
-                <template #icon>
-                    <n-icon>
-                        <search-icon />
-                    </n-icon>
-                </template>
-                搜索
-            </n-button>
-        </n-space>
-        <n-space>
-            <n-button type="info" @click="handleExport">
-                <template #icon>
-                    <n-icon>
-                        <download-icon />
-                    </n-icon>
-                </template>
-                导出内容
-            </n-button>
-            <n-button type="info" @click="handleAdd">
-                <template #icon>
-                    <n-icon>
-                        <add-icon />
-                    </n-icon>
-                </template>
-                新增
-            </n-button>
-        </n-space>
-    </n-card>
-    <n-card class="card-container">
-        <n-data-table
-            :columns="columns"
-            :data="data"
-            :single-line="false"
-            :pagination="pagination"
-        />
-    </n-card>
+        </n-card>
+    </n-space>
 </template>
 
 <script lang="ts" setup>
