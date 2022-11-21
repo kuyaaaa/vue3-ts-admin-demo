@@ -101,26 +101,29 @@ const dataMock: Song[] = [
 
 const data = ref(dataMock);
 
-const columns: DataTableColumns<Song> = [
-    { title: "No", key: "no" },
+const createColumns = (): DataTableColumns<Song> => [
+    {
+        title: "No",
+        key: "no",
+    },
     {
         title: "Title",
         key: "title",
-        ellipsis: {
-            tooltip: true,
-        },
     },
-    { title: "Length", key: "length" },
+    {
+        title: "Length",
+        key: "length",
+    },
     {
         title: "Action",
         key: "actions",
-        render(row: Song) {
+        render(row) {
             return h(
                 NButton,
                 {
                     strong: true,
-                    size: "small",
                     type: "error",
+                    size: "small",
                     onClick: () => {
                         window.$message.info(`Play ${row.title}`);
                     },
@@ -130,6 +133,7 @@ const columns: DataTableColumns<Song> = [
         },
     },
 ];
+const columns = createColumns();
 
 const searchParams = reactive({
     keyword: "",
