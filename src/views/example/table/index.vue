@@ -1,49 +1,43 @@
 <template>
     <n-card class="card-container">
-        <n-grid x-gap="12" y-gap="10" :cols="5">
-            <n-gi>
-                <n-input
-                    v-model:value="searchParams.keyword"
-                    type="text"
-                    clearable
-                    placeholder="请输入关键字"
-                />
-            </n-gi>
-            <n-gi :span="2">
-                <n-input-group>
-                    <n-date-picker v-model:value="searchParams.date" clearable />
-                    <n-time-picker v-model:value="searchParams.time" clearable />
-                </n-input-group>
-            </n-gi>
-            <n-gi :offset="1" class="grid-item-right">
-                <n-button type="primary" @click="handleSearch">
-                    <template #icon>
-                        <n-icon>
-                            <search-icon />
-                        </n-icon>
-                    </template>
-                    搜索
-                </n-button>
-            </n-gi>
-            <n-gi :span="5" class="grid-item-right">
-                <n-button type="info" @click="handleExport">
-                    <template #icon>
-                        <n-icon>
-                            <download-icon />
-                        </n-icon>
-                    </template>
-                    导出内容
-                </n-button>
-                <n-button type="info" @click="handleAdd">
-                    <template #icon>
-                        <n-icon>
-                            <add-icon />
-                        </n-icon>
-                    </template>
-                    新增
-                </n-button>
-            </n-gi>
-        </n-grid>
+        <n-space>
+            <n-input
+                v-model:value="searchParams.keyword"
+                type="text"
+                clearable
+                placeholder="请输入关键字"
+            />
+            <n-input-group>
+                <n-date-picker v-model:value="searchParams.date" clearable />
+                <n-time-picker v-model:value="searchParams.time" clearable />
+            </n-input-group>
+            <n-button type="primary" @click="handleSearch">
+                <template #icon>
+                    <n-icon>
+                        <search-icon />
+                    </n-icon>
+                </template>
+                搜索
+            </n-button>
+        </n-space>
+        <n-space>
+            <n-button type="info" @click="handleExport">
+                <template #icon>
+                    <n-icon>
+                        <download-icon />
+                    </n-icon>
+                </template>
+                导出内容
+            </n-button>
+            <n-button type="info" @click="handleAdd">
+                <template #icon>
+                    <n-icon>
+                        <add-icon />
+                    </n-icon>
+                </template>
+                新增
+            </n-button>
+        </n-space>
     </n-card>
     <n-card class="card-container">
         <n-data-table
@@ -57,7 +51,8 @@
 
 <script lang="ts" setup>
 import { h, reactive, ref } from "vue";
-import { PaginationProps, DataTableColumns, NButton } from "naive-ui";
+import { NButton } from "naive-ui";
+import type { PaginationProps, DataTableColumns } from "naive-ui";
 import {
     Search as SearchIcon,
     Add as AddIcon,
