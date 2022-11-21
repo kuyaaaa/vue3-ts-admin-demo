@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { cloneDeep } from "lodash";
 import { LoginParams, UserInfoType } from "@/types/user";
 import { TOKEN } from "@/utils/static";
 import { removeToken, setToken } from "@/utils/token";
@@ -50,17 +51,20 @@ const useLoginStore = defineStore({
             });
         },
         /** 获取用户信息 */
-        async getUserInfo() {
-            // const res = await window.$http.get("/userInfo");
-            // 临时数据
-            setTimeout(() => {
-                const info: UserInfoType = {
-                    avatar: "https://avatars.githubusercontent.com/u/54495986?v=4",
-                    userName: "爷傲丶奈我何",
-                    signature: "这个人很懒，什么都没有留下！",
-                };
-                this.userInfo = info;
-            }, 1000);
+        getUserInfo() {
+            return new Promise<UserInfoType>((resolve, reject) => {
+                // const res = await window.$http.get("/userInfo");
+                // 临时数据
+                setTimeout(() => {
+                    const info: UserInfoType = {
+                        avatar: "https://avatars.githubusercontent.com/u/54495986?v=4",
+                        userName: "爷傲丶奈我何",
+                        signature: "这个人很懒，什么都没有留下！",
+                    };
+                    this.userInfo = info;
+                    resolve(cloneDeep(info));
+                }, 1000);
+            });
         },
     },
 });

@@ -3,8 +3,10 @@
         "Borderless",
         "ionicons",
         "nprogress",
+        "pinia",
         "screenfull",
         "sider",
-        "vicons"
+        "vicons",
+        "VITE"
     ]
 }

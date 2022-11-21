@@ -15,13 +15,10 @@
                         accept="image/*"
                         list-type="image"
                         :max="1"
-                        :action="imgUploadApiUrl"
-                        :file-list="avatarList"
-                        @update:file-list="val => (avatarList = val)"
+                        :action="IMG_UPLOAD_API_URL"
+                        @finish="handleAvatarUpFinish"
                     >
-                        <n-button>
-                            {{ avatarList.length === 0 ? "上传头像" : "请删除下方文件再上传" }}
-                        </n-button>
+                        <n-button>上传头像</n-button>
                     </n-upload>
                 </n-space>
             </n-form-item>
@@ -43,25 +40,22 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from "vue";
+import { onMounted, ref } from "vue";
 import type { FormInst, UploadFileInfo } from "naive-ui";
-import { storeToRefs } from "pinia";
-import { cloneDeep } from "lodash";
-import { UserInfoType } from "@/types/user";
 import useLoginStore from "@/store/modules/login";
 
 const loginStore = useLoginStore();
-const { userInfo } = storeToRefs(loginStore);
+const formData = ref(loginStore.userInfo);
+
+onMounted(async () => {
+    formData.value = await loginStore.getUserInfo();
+});
 
 /** 头像上传接口地址，自行修改后缀 */
-const imgUploadApiUrl = `${import.meta.env.VITE_BASE_URL}/upload/avatar`;
+const IMG_UPLOAD_API_URL = `${import.meta.env.VITE_BASE_URL}/upload/avatar`;
 
 const formRef = ref<FormInst | null>(null);
-const formData = ref<UserInfoType>({
-    avatar: "",
-    userName: "",
-    signature: "",
-});
+
 const rules = {
     avatar: {
         required: true,
@@ -74,6 +68,11 @@ const rules = {
         message: "不起个名字没人认识你哦",
     },
 };
+
+const handleAvatarUpFinish = ({ file }: { file: UploadFileInfo }) => {
+    formData.value.avatar = file.url || "";
+};
+
 const handleSubmit = (e: MouseEvent) => {
     e.preventDefault();
     formRef.value?.validate(errors => {
@@ -85,24 +84,6 @@ const handleSubmit = (e: MouseEvent) => {
         }
     });
 };
-
-const avatarList = ref<UploadFileInfo[]>([]);
-
-watch(
-    userInfo,
-    val => {
-        formData.value = cloneDeep(val);
-        avatarList.value = [
-            {
-                id: "1",
-                name: formData.value.avatar,
-                status: "finished",
-                url: formData.value.avatar,
-            },
-        ];
-    },
-    { immediate: true }
-);
 </script>
 
 <style lang="scss" scoped></style>
