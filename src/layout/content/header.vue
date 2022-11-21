@@ -11,8 +11,8 @@
 
 <script lang="ts" setup>
 import HeaderController from "../components/header-controller/index.vue";
-import HeaderUser from "../components/header-user.vue";
-import HeaderBreadcrumb from "../components/header-breadcrumb.vue";
+import HeaderUser from "../components/header-user/index.vue";
+import HeaderBreadcrumb from "../components/header-breadcrumb/index.vue";
 </script>
 
 <style lang="scss" scoped>

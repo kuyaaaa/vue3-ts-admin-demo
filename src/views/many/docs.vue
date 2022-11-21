@@ -7,8 +7,7 @@
                 最外层路由的<n-text code>component</n-text>需要为<n-text code>Layout</n-text
                 >，而作为中间层的过渡元素的<n-text code>component </n-text>需要为<n-text code
                     >MultistageRouterLayout</n-text
-                >即
-                <n-text code>@/components/multistage-router-layout.vue</n-text
+                >即<n-text code>@/components/multistage-router-layout/index.vue</n-text
                 >组件，该组件只有一个<n-text code>router-view</n-text> 标签，如果不添加该<n-text
                     code
                     >component</n-text

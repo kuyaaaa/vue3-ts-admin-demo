@@ -15,7 +15,7 @@
 <script lang="ts" setup>
 import { SettingOutlined as SettingIcon } from "@vicons/antd";
 import { ref } from "vue";
-import DrawerSetting from "../drawer-setting.vue";
+import DrawerSetting from "../drawer-setting/index.vue";
 
 const show = ref(false);
 </script>

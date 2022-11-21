@@ -13,7 +13,7 @@ import {
     AddCircleOutline as AddCircleOutlineIcon,
 } from "@vicons/ionicons5";
 import Layout from "@/layout/index.vue";
-import MultistageRouterLayout from "@/components/multistage-router-layout.vue";
+import MultistageRouterLayout from "@/components/multistage-router-layout/index.vue";
 
 const userRoutes: RouteRecordRaw[] = [
     // 案例
