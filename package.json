@@ -13,7 +13,7 @@
         "axios": "^0.26.1",
         "highlight.js": "^11.5.1",
         "lodash": "^4.17.21",
-        "naive-ui": "^2.30.4",
+        "naive-ui": "^2.34.0",
         "nprogress": "^0.2.0",
         "pinia": "^2.0.13",
         "screenfull": "^6.0.1",
