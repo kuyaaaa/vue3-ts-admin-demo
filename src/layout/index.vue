@@ -15,7 +15,14 @@
                 class="layout-content-container"
             >
                 <n-layout-content :native-scrollbar="false" embedded class="content-container">
-                    <router-view />
+                    <router-view v-slot="{ Component }">
+                        <transition
+                            enter-active-class="fade-enter fade-enter-active"
+                            leave-active-class="fade-leave fade-leave-active"
+                        >
+                            <component :is="Component" />
+                        </transition>
+                    </router-view>
                 </n-layout-content>
             </n-layout-content>
         </n-layout>
@@ -77,5 +84,19 @@ onBeforeUnmount(() => {
 .content-container {
     padding: v-bind('style_content_padding + "px"');
     box-sizing: border-box;
+}
+
+.fade-enter {
+    opacity: 0;
+}
+.fade-leave {
+    opacity: 1;
+}
+.fade-enter-active {
+    transition: all 0.3s;
+}
+.fade-leave-active {
+    opacity: 0;
+    transition: all 0.3s;
 }
 </style>
