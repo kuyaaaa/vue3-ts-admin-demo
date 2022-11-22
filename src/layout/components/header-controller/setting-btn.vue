@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import { SettingOutlined as SettingIcon } from "@vicons/antd";
+import { SettingsOutline as SettingIcon } from "@vicons/ionicons5";
 import { ref } from "vue";
 import DrawerSetting from "../drawer-setting/index.vue";
 

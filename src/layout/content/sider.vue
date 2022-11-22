@@ -32,7 +32,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
+import { storeToRefs } from "pinia";
 import useMenuStore from "@/store/modules/menu";
 
 const emit = defineEmits<{
@@ -41,17 +42,18 @@ const emit = defineEmits<{
 
 const menuStore = useMenuStore();
 
-const menuOptions = ref<any[]>([]);
+const { list: menuOptions } = storeToRefs(menuStore);
 
 // 部分配置
 const siderWidth = 240;
 const collapsedWidth = 64;
 const collapsedIconSize = 22;
 
-if (!menuStore.list.length) {
-    menuStore.createMenuList();
-}
-menuOptions.value = menuStore.list;
+onMounted(async () => {
+    if (!menuStore.list.length) {
+        await menuStore.createMenuList();
+    }
+});
 
 /** 当前路由对应的菜单name */
 const currentMenu = computed(() => {

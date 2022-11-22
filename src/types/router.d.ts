@@ -1,14 +1,13 @@
 // 路由拓展定义
 /* eslint no-unused-vars: "off" */
 import "vue-router";
-import type { Component } from "vue";
 
 declare module "vue-router" {
     interface RouteMeta {
         /** 对应菜单名称 */
         label?: string;
         /** 图标，需从"@vicons"引入 */
-        icon?: Component;
+        icon?: keyof typeof import("@vicons/ionicons5");
         /** 是否在菜单中隐藏 */
         hidden?: boolean;
         /** 是否在菜单中禁用 */

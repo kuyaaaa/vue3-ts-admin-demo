@@ -37,5 +37,6 @@ module.exports = {
         "import/no-unresolved": "off",
         "import/prefer-default-export": "off",
         "vue/multi-word-component-names": "off",
+        "no-await-in-loop": "off",
     },
 };

@@ -1,8 +1,4 @@
 import type { RouteRecordRaw } from "vue-router";
-import {
-    SkullOutline as SkullOutlineIcon,
-    TrashBinOutline as TrashBinOutlineIcon,
-} from "@vicons/ionicons5";
 import Layout from "@/layout/index.vue";
 
 const errorRoutes: RouteRecordRaw[] = [
@@ -11,18 +7,18 @@ const errorRoutes: RouteRecordRaw[] = [
         component: Layout,
         name: "errorPage",
         redirect: "/error/403",
-        meta: { label: "错误页", icon: SkullOutlineIcon },
+        meta: { label: "错误页", icon: "SkullOutline" },
         children: [
             {
                 path: "403",
                 name: "errorPage403",
-                meta: { label: "403", icon: TrashBinOutlineIcon },
+                meta: { label: "403", icon: "TrashBinOutline" },
                 component: () => import("@/views/errors/403.vue"),
             },
             {
                 path: "404",
                 name: "errorPage404",
-                meta: { label: "404", icon: TrashBinOutlineIcon },
+                meta: { label: "404", icon: "TrashBinOutline" },
                 component: () => import("@/views/errors/404.vue"),
             },
         ],

@@ -3,8 +3,8 @@
         <template #trigger>
             <n-button text style="font-size: 24px" @click="handleScreenFullClick">
                 <n-icon>
-                    <full-screen-icon v-if="!isFullscreen" />
-                    <full-screen-exit-icon v-else />
+                    <expand-icon v-if="!isFullscreen" />
+                    <contract-icon v-else />
                 </n-icon>
             </n-button>
         </template>
@@ -15,10 +15,7 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref } from "vue";
 import screenfull from "screenfull";
-import {
-    FullscreenOutlined as FullScreenIcon,
-    FullscreenExitOutlined as FullScreenExitIcon,
-} from "@vicons/antd";
+import { Expand as ExpandIcon, Contract as ContractIcon } from "@vicons/ionicons5";
 
 const isFullscreen = ref(false);
 const tooltipText = computed(() => (isFullscreen.value ? "退出全屏" : "全屏"));

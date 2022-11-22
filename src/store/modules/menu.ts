@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 import type { RouteRecordRaw } from "vue-router";
 import type { MenuOption } from "naive-ui";
 import { Home as HomeIcon } from "@vicons/ionicons5";
-import { renderIcon, renderRouterLink, renderATag } from "@/utils/render";
+import { renderIcon, renderIconStr, renderRouterLink, renderATag } from "@/utils/render";
 import { routes } from "@/router";
 
 /** label字段处理，用于渲染不同的标签 */
@@ -29,7 +29,7 @@ const dealLabel = (child: RouteRecordRaw) => {
 };
 
 // 递归创建菜单列表
-const handleRoutesChildren = (list: RouteRecordRaw[]) => {
+const handleRoutesChildren = async (list: RouteRecordRaw[]) => {
     const finalList: any[] = [];
     for (let i = 0; i < list.length; i++) {
         const item = list[i];
@@ -38,14 +38,15 @@ const handleRoutesChildren = (list: RouteRecordRaw[]) => {
             // onlyFirst检测，直接取children[0]做一级标签
             const { meta, name } = item.meta?.onlyFirst && item.children ? item.children[0] : item;
             /** 最终处理后所需要的菜单一级子元素 */
+            const iconOption = meta?.icon ? { icon: await renderIconStr(meta.icon) } : {};
             const finalChild: MenuOption = {
                 key: String(name),
                 label: dealLabel(item),
                 disabled: meta?.disabled,
-                icon: renderIcon(meta?.icon),
                 extra: meta?.isOutLink
                     ? () => renderATag(meta.label as string, { href: item.path })
                     : undefined,
+                ...iconOption,
             };
             if (item.meta?.onlyFirst) {
                 finalList.push(finalChild);
@@ -53,7 +54,7 @@ const handleRoutesChildren = (list: RouteRecordRaw[]) => {
             }
             // 子元素中还有儿子判断，进行递归
             if (item.children) {
-                finalChild.children = handleRoutesChildren(item.children);
+                finalChild.children = await handleRoutesChildren(item.children);
             }
 
             finalList.push(finalChild);
@@ -73,7 +74,7 @@ const useMenuStore = defineStore({
     },
     actions: {
         /** 根据routes创建菜单列表 */
-        createMenuList() {
+        async createMenuList() {
             const menuList = [];
             const routesList = routes;
             // "/"下的子路由仅保留一个，作为首页及菜单处理
@@ -85,11 +86,11 @@ const useMenuStore = defineStore({
                 menuList.push({
                     key: String(name),
                     label: () => renderRouterLink(String(name), meta?.label),
-                    icon: renderIcon(meta?.icon ? meta.icon : HomeIcon),
+                    icon: meta?.icon ? await renderIconStr(meta.icon) : renderIcon(HomeIcon),
                 });
             }
             // 遍历剩下的路由，加入菜单列表
-            menuList.push(...handleRoutesChildren(routesList));
+            menuList.push(...(await handleRoutesChildren(routesList)));
 
             this.list = menuList;
         },

@@ -24,28 +24,28 @@ const oneRouteCode = `
     name: "many",
     component: Layout,
     redirect: "/many/father/son/grandson",
-    meta: { label: "多级菜单", icon: ApartmentOutlinedIcon },
+    meta: { label: "多级菜单", icon: "ApartmentOutlined" },
     children: [
         {
             path: "father",
             name: "manyFather",
             component: MultistageRouterLayout,
             redirect: "/many/father/son/grandson",
-            meta: { label: "我是爸爸", icon: ManOutlinedIcon },
+            meta: { label: "我是爸爸", icon: "ManOutlined" },
             children: [
                 {
                     path: "son",
                     name: "manyFatherSon",
                     component: MultistageRouterLayout,
                     redirect: "/many/father/son/grandson",
-                    meta: { label: "我是儿子", icon: ManOutlinedIcon },
+                    meta: { label: "我是儿子", icon: "ManOutlined" },
                     children: [
                         {
                             path: "grandson",
                             name: "manyFatherSonGrandson",
                             component: () =>
                                 import("@/views/many/father/son/grandson/index.vue"),
-                            meta: { label: "我是孙子", icon: ManOutlinedIcon },
+                            meta: { label: "我是孙子", icon: "ManOutlined" },
                         },
                     ],
                 },

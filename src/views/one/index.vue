@@ -28,7 +28,7 @@ const oneRouteCode = `{
             path: "index",
             name: "oneIndex",
             component: () => import("@/views/one/index.vue"),
-            meta: { label: "单级菜单", icon: GitCommitOutlineIcon },
+            meta: { label: "单级菜单", icon: "GitCommitOutline" },
         },
     ],
 },`;

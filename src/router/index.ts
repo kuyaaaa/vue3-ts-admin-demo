@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import { HomeOutline as HomeOutlineIcon } from "@vicons/ionicons5";
 import Layout from "@/layout/index.vue";
 import Login from "@/views/user/login.vue";
 import Error404 from "@/views/errors/404.vue";
@@ -18,7 +17,7 @@ export const routes: RouteRecordRaw[] = [
             {
                 path: "home",
                 name: "home",
-                meta: { label: "主页", icon: HomeOutlineIcon },
+                meta: { label: "主页", icon: "HomeOutline" },
                 component: () => import("@/views/home.vue"),
             },
         ],

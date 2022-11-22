@@ -10,6 +10,12 @@ export const renderIcon = (icon?: Component) => {
     return icon ? () => h(NIcon, null, { default: () => h(icon) }) : undefined;
 };
 
+/** 渲染图标组件方法（传入值为 @vicons/ionicons5 的图标名称字符串） */
+export const renderIconStr = async (icon: keyof typeof import("@vicons/ionicons5")) => {
+    const { [icon]: iconNode } = await import("@vicons/ionicons5");
+    return () => h(NIcon, null, { default: () => h(iconNode) });
+};
+
 /**
  * 渲染router-link组件方法
  * @param   name    对应routes的跳转name
