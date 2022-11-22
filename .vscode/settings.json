@@ -8,5 +8,6 @@
         "sider",
         "vicons",
         "VITE"
-    ]
+    ],
+    "typescript.tsdk": "node_modules/typescript/lib"
 }
