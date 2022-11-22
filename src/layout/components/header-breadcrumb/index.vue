@@ -1,36 +1,35 @@
 <template>
     <n-breadcrumb>
-        <n-breadcrumb-item
-            v-for="item in breadcrumbList"
-            :key="item.name"
-            @click="handleBreadcrumbClick(item)"
-        >
-            <n-icon v-if="item.meta.icon">
-                <component :is="item.meta.icon"></component>
-            </n-icon>
+        <n-breadcrumb-item v-for="item in breadcrumbList" :key="item.name" :clickable="false">
+            <component :is="item.icon" v-if="item.icon"></component>
             {{ item.meta.label }}
         </n-breadcrumb-item>
     </n-breadcrumb>
 </template>
 
 <script lang="ts" setup>
-import { computed } from "vue";
-import type { RouteLocationMatched } from "vue-router";
+import { ref, watch } from "vue";
+import { renderIconStr } from "@/utils/render";
 
-const breadcrumbList = computed(() => {
-    const { matched } = window.$router.currentRoute.value;
-    const result: RouteLocationMatched[] = [];
-    matched.forEach(item => {
-        if (item.path !== "/" && item.meta.label) {
-            result.push(item);
+const breadcrumbList = ref<any[]>([]);
+watch(
+    () => window.$router.currentRoute.value,
+    async val => {
+        const { matched } = val;
+        const result: any[] = [];
+        for (let i = 0; i < matched.length; i++) {
+            const item = matched[i];
+            if (item.path !== "/" && item.meta.label) {
+                result.push({
+                    ...item,
+                    icon: item.meta?.icon ? await renderIconStr(item.meta.icon) : "",
+                });
+            }
         }
-    });
-    return result;
-});
-
-const handleBreadcrumbClick = ({ name }: RouteLocationMatched) => {
-    window.$router.push({ name });
-};
+        breadcrumbList.value = result;
+    },
+    { immediate: true }
+);
 </script>
 
 <style lang="scss" scoped></style>
