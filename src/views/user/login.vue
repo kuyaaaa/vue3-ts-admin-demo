@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" :class="config.theme">
         <n-card class="card-container">
             <n-h1 class="title">this is login</n-h1>
             <n-form
@@ -47,8 +47,10 @@
 import type { FormInst } from "naive-ui";
 import { Person, LockClosed, LogIn as loginIcon } from "@vicons/ionicons5";
 import { ref } from "vue";
+import { storeToRefs } from "pinia";
 import { LoginParams } from "@/types/user";
 import useLoginStore from "@/store/modules/login";
+import useSystemStore from "@/store/modules/system";
 
 const formRef = ref<FormInst | null>(null);
 const formValue = ref<LoginParams>({
@@ -74,15 +76,28 @@ const handleLogin = (e: MouseEvent) => {
         }
     });
 };
+
+const systemStore = useSystemStore();
+const { config } = storeToRefs(systemStore);
 </script>
 
 <style lang="scss" scoped>
 .container {
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%);
     @include flex-center-main-cross;
     flex-direction: column;
+    transition: all 0.3s;
+
+    &.normal {
+        background-image: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%);
+    }
+
+    &.dark {
+        background: linear-gradient(to bottom, #323232 0%, #3f3f3f 40%, #1c1c1c 150%),
+            linear-gradient(to top, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0.25) 200%);
+        background-blend-mode: multiply;
+    }
 }
 
 .card-container {
