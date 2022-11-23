@@ -1,7 +1,7 @@
 <template>
     <div class="container" :class="config.theme">
         <n-card class="card-container">
-            <n-h1 class="title">this is login</n-h1>
+            <n-h1 class="title">{{ PROJECT_TITLE }}</n-h1>
             <n-form
                 ref="formRef"
                 :label-width="55"
@@ -51,6 +51,7 @@ import { storeToRefs } from "pinia";
 import { LoginParams } from "@/types/user";
 import useLoginStore from "@/store/modules/login";
 import useSystemStore from "@/store/modules/system";
+import { PROJECT_TITLE } from "@/config/system";
 
 const formRef = ref<FormInst | null>(null);
 const formValue = ref<LoginParams>({

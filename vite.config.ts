@@ -3,6 +3,8 @@ import vue from "@vitejs/plugin-vue";
 import * as path from "path";
 import Components from "unplugin-vue-components/vite";
 import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
+import { createHtmlPlugin } from "vite-plugin-html";
+import { PROJECT_TITLE } from "./src/config/system";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,6 +12,13 @@ export default defineConfig({
         vue(),
         Components({
             resolvers: [NaiveUiResolver()],
+        }),
+        createHtmlPlugin({
+            inject: {
+                data: {
+                    title: PROJECT_TITLE,
+                },
+            },
         }),
     ],
     define: {

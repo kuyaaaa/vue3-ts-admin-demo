@@ -13,12 +13,8 @@
         @update:collapsed="(collapsed: boolean) => emit('collapsed', collapsed)"
     >
         <n-space :wrap="false" class="logo-container" align="center" justify="center">
-            <n-image
-                :width="collapsedIconSize"
-                src="/src/assets/images/logo.png"
-                preview-disabled
-            />
-            <n-text v-if="!collapsed" class="text-nowrap">COOL LOGO!</n-text>
+            <n-image :width="collapsedIconSize" :src="PROJECT_MENU_LOGO" preview-disabled />
+            <n-text v-if="!collapsed" class="text-nowrap">{{ PROJECT_MENU_TITLE }}</n-text>
         </n-space>
         <n-divider class="divider-style" />
         <n-menu
@@ -35,6 +31,7 @@
 import { computed, onMounted, ref } from "vue";
 import { storeToRefs } from "pinia";
 import useMenuStore from "@/store/modules/menu";
+import { PROJECT_MENU_TITLE, PROJECT_MENU_LOGO } from "@/config/system";
 
 const emit = defineEmits<{
     (event: "collapsed", collapsed: boolean): void;
