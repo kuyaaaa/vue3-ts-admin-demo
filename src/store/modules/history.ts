@@ -25,9 +25,7 @@ const useHistoryStore = defineStore({
             if (!~hasIndex) {
                 this.routerHistory.push({
                     ...history,
-                    iconNode: history.meta?.icon
-                        ? await renderIconStr(history.meta?.icon)
-                        : undefined,
+                    iconNode: await renderIconStr(history.meta?.icon),
                 });
             }
         },

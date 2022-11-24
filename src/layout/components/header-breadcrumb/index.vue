@@ -22,7 +22,7 @@ watch(
             if (item.path !== "/" && item.meta.label) {
                 result.push({
                     ...item,
-                    icon: item.meta?.icon ? await renderIconStr(item.meta.icon) : "",
+                    icon: await renderIconStr(item.meta?.icon),
                 });
             }
         }

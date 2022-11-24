@@ -11,9 +11,13 @@ export const renderIcon = (icon?: Component) => {
 };
 
 /** 渲染图标组件方法（传入值为 @vicons/ionicons5 的图标名称字符串） */
-export const renderIconStr = async (icon: keyof typeof import("@vicons/ionicons5")) => {
-    const { [icon]: iconNode } = await import("@vicons/ionicons5");
-    return () => h(NIcon, null, { default: () => h(iconNode) });
+export const renderIconStr = async (icon?: keyof typeof import("@vicons/ionicons5")) => {
+    if (icon) {
+        const { [icon]: iconNode } = await import("@vicons/ionicons5");
+        return () => h(NIcon, null, { default: () => h(iconNode) });
+    } else {
+        return undefined;
+    }
 };
 
 /**

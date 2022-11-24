@@ -2,8 +2,7 @@
 import { defineStore } from "pinia";
 import type { RouteRecordRaw } from "vue-router";
 import type { MenuOption } from "naive-ui";
-import { Home as HomeIcon } from "@vicons/ionicons5";
-import { renderIcon, renderIconStr, renderRouterLink, renderATag } from "@/utils/render";
+import { renderIconStr, renderRouterLink, renderATag } from "@/utils/render";
 import { routes } from "@/router";
 
 /** label字段处理，用于渲染不同的标签 */
@@ -38,7 +37,7 @@ const handleRoutesChildren = async (list: RouteRecordRaw[]) => {
             // onlyFirst检测，直接取children[0]做一级标签
             const { meta, name } = item.meta?.onlyFirst && item.children ? item.children[0] : item;
             /** 最终处理后所需要的菜单一级子元素 */
-            const iconOption = meta?.icon ? { icon: await renderIconStr(meta.icon) } : {};
+            const iconOption = { icon: await renderIconStr(meta?.icon) };
             const finalChild: MenuOption = {
                 key: String(name),
                 label: dealLabel(item),
@@ -86,7 +85,7 @@ const useMenuStore = defineStore({
                 menuList.push({
                     key: String(name),
                     label: () => renderRouterLink(String(name), meta?.label),
-                    icon: meta?.icon ? await renderIconStr(meta.icon) : renderIcon(HomeIcon),
+                    icon: await renderIconStr(meta?.icon),
                 });
             }
             // 遍历剩下的路由，加入菜单列表
