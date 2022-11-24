@@ -1,21 +1,31 @@
 <template>
     <div class="view-tags-container">
-        <n-scrollbar class="view-tags-scroll" x-scrollable>
+        <n-scrollbar
+            id="view-tags-scroll"
+            ref="viewTagsScroll"
+            class="view-tags-scroll"
+            x-scrollable
+            @wheel="handleScrollWheel"
+        >
             <n-space align="center" :wrap="false">
-                <n-tag
+                <div
                     v-for="(item, index) in routerHistory"
+                    :id="`view-tag-${index}`"
                     :key="item.path"
-                    :type="currentRoute.path === item.path ? 'primary' : 'default'"
-                    :bordered="!(currentRoute.path === item.path)"
-                    :closable="!item.meta.isAffix"
-                    @click="toTag(item.path)"
-                    @close="handleTagClose(index)"
                 >
-                    {{ item.meta.label }}
-                    <template #icon>
-                        <component :is="item.iconNode"></component>
-                    </template>
-                </n-tag>
+                    <n-tag
+                        :type="currentRoute.path === item.path ? 'primary' : 'default'"
+                        :bordered="!(currentRoute.path === item.path)"
+                        :closable="!item.meta.isAffix"
+                        @click="handleTagClick(index)"
+                        @close="handleTagClose(index)"
+                    >
+                        {{ item.meta.label }}
+                        <template #icon>
+                            <component :is="item.iconNode"></component>
+                        </template>
+                    </n-tag>
+                </div>
             </n-space>
         </n-scrollbar>
     </div>
@@ -23,7 +33,8 @@
 
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
-import { computed } from "vue";
+import { computed, ref, watch, nextTick } from "vue";
+import type { ScrollbarInst } from "naive-ui";
 import useHistoryStore from "@/store/modules/history";
 
 const historyStore = useHistoryStore();
@@ -33,13 +44,59 @@ const handleTagClose = (index: number) => {
     historyStore.removeRouterHistory(index);
 };
 
-const toTag = (path: string) => {
-    window.$router.push(path);
+/** 获取某个tag对于scroll的相对位置 */
+const getTagMovePosition = (index: number) => {
+    const tagEl = document.getElementById(`view-tag-${index}`);
+    const scrollEl = document.getElementById("view-tags-scroll");
+
+    if (scrollEl && tagEl) {
+        const scrollWidth = scrollEl.offsetWidth;
+        const tagWidth = tagEl.offsetWidth;
+        const tagClientLeft = tagEl.getBoundingClientRect().left;
+        const scrollClientLeft = scrollEl.getBoundingClientRect().left;
+
+        // 在滚动条视野左侧外
+        if (tagClientLeft - scrollClientLeft <= 0) {
+            return tagClientLeft - scrollClientLeft;
+        }
+        // 在滚动条视野右侧外
+        else if (tagClientLeft + tagWidth > scrollWidth + scrollClientLeft) {
+            return tagWidth - (scrollWidth + scrollClientLeft - tagClientLeft);
+        }
+    }
+    return 0;
 };
+
+const viewTagsScroll = ref<ScrollbarInst | null>(null);
+const handleTagClick = (index: number) => {
+    window.$router.push(routerHistory.value[index].path);
+};
+// 历史记录变化自动滚动至最底部
+watch(
+    routerHistory,
+    (newVal, oldVal) => {
+        nextTick(() => {
+            viewTagsScroll.value?.scrollTo({ left: 99999 });
+        });
+    },
+    { deep: true }
+);
 
 const currentRoute = computed(() => {
     return window.$router.currentRoute.value;
 });
+watch(
+    () => currentRoute.value.path,
+    val => {
+        const index = routerHistory.value.findIndex(item => item.path === val);
+        const movePosition = getTagMovePosition(index);
+        viewTagsScroll.value?.scrollBy({ left: movePosition });
+    }
+);
+
+const handleScrollWheel = (e: WheelEvent) => {
+    viewTagsScroll.value?.scrollBy({ left: e.deltaY });
+};
 </script>
 
 <style lang="scss" scoped>
