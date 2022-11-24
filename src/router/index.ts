@@ -17,7 +17,7 @@ export const routes: RouteRecordRaw[] = [
             {
                 path: "home",
                 name: "home",
-                meta: { label: "主页", icon: "HomeOutline" },
+                meta: { label: "主页", icon: "HomeOutline", isAffix: true },
                 component: () => import("@/views/home.vue"),
             },
         ],

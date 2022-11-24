@@ -19,5 +19,7 @@ declare module "vue-router" {
         onlyFirst?: boolean;
         /** 如果为外链，填外链地址 */
         outLink?: string;
+        /** 是否固定在view-tags下，为true时无法关闭 */
+        isAffix?: boolean;
     }
 }

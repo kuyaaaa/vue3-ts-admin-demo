@@ -1,11 +1,14 @@
 <template>
-    <n-space class="header-container" align="center" justify="end">
-        <header-controller />
-        <header-user />
+    <n-space class="header-container" align="center" justify="space-between">
+        <header-breadcrumb />
+        <n-space align="center">
+            <header-controller />
+            <header-user />
+        </n-space>
     </n-space>
     <n-divider />
     <div class="bread-container">
-        <header-breadcrumb />
+        <view-tags />
     </div>
 </template>
 
@@ -13,6 +16,7 @@
 import HeaderController from "../components/header-controller/index.vue";
 import HeaderUser from "../components/header-user/index.vue";
 import HeaderBreadcrumb from "../components/header-breadcrumb/index.vue";
+import ViewTags from "../components/view-tags/index.vue";
 </script>
 
 <style lang="scss" scoped>
@@ -22,9 +26,8 @@ import HeaderBreadcrumb from "../components/header-breadcrumb/index.vue";
 }
 
 .bread-container {
-    height: 30px;
+    height: 40px;
     padding: 0 10px;
-    @include flex-center-main;
 }
 
 .n-divider:not(.n-divider--vertical) {

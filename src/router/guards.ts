@@ -4,6 +4,7 @@ import "@/assets/styles/nprogress.scss";
 import router from "./index";
 import { getToken } from "@/utils/token";
 import useLoginStore from "@/store/modules/login";
+import useHistoryStore from "@/store/modules/history";
 import { TOKEN } from "@/utils/static";
 import { defaultPrimaryColor } from "@/config/theme";
 
@@ -29,13 +30,16 @@ router.beforeEach(async (to, from, next) => {
     if (isWhite) {
         next();
     }
-    // has token, no userInfo
-    else if (token && !userName) {
-        await loginStore.getUserInfo();
-        next();
-    }
-    // has token & userInfo
+    // has token
     else if (token) {
+        // has token, no userInfo
+        if (!userName) {
+            await loginStore.getUserInfo();
+        }
+        // 历史记录存储
+        const historyStore = useHistoryStore();
+        historyStore.setRouterHistory(to);
+
         next();
     }
     // no token
