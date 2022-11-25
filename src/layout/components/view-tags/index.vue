@@ -2,7 +2,7 @@
     <div class="view-tags-container">
         <n-scrollbar
             id="view-tags-scroll"
-            ref="viewTagsScroll"
+            ref="viewTagsScrollRef"
             class="view-tags-scroll"
             x-scrollable
             @wheel="handleScrollWheel"
@@ -67,7 +67,7 @@ const getTagMovePosition = (index: number) => {
     return 0;
 };
 
-const viewTagsScroll = ref<ScrollbarInst | null>(null);
+const viewTagsScrollRef = ref<ScrollbarInst | null>(null);
 const handleTagClick = (index: number) => {
     window.$router.push(routerHistory.value[index].path);
 };
@@ -76,7 +76,7 @@ watch(
     routerHistory,
     (newVal, oldVal) => {
         nextTick(() => {
-            viewTagsScroll.value?.scrollTo({ left: 99999 });
+            viewTagsScrollRef.value?.scrollTo({ left: 99999 });
         });
     },
     { deep: true }
@@ -90,12 +90,12 @@ watch(
     val => {
         const index = routerHistory.value.findIndex(item => item.path === val);
         const movePosition = getTagMovePosition(index);
-        viewTagsScroll.value?.scrollBy({ left: movePosition });
+        viewTagsScrollRef.value?.scrollBy({ left: movePosition });
     }
 );
 
 const handleScrollWheel = (e: WheelEvent) => {
-    viewTagsScroll.value?.scrollBy({ left: e.deltaY });
+    viewTagsScrollRef.value?.scrollBy({ left: e.deltaY });
 };
 </script>
 
