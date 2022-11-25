@@ -1,11 +1,13 @@
 // 路由历史记录
 import { defineStore } from "pinia";
-import type { RouteLocationNormalized } from "vue-router";
+import type { RouteLocationNormalized, RouteMeta } from "vue-router";
 import type { VNode } from "vue";
 import { renderIconStr } from "@/utils/render";
 
 /** 路由历史记录数组元素类型 */
-export interface routerHistoryItem extends RouteLocationNormalized {
+export interface routerHistoryItem {
+    meta: RouteMeta;
+    path: string;
     iconNode?: () => VNode;
 }
 
@@ -20,13 +22,15 @@ const useHistoryStore = defineStore({
         /**
          * 存储路由历史记录
          */
-        async setRouterHistory(history: routerHistoryItem) {
+        async setRouterHistory(history: RouteLocationNormalized) {
             const hasIndex = this.routerHistory.findIndex(item => item.path === history.path);
             if (!~hasIndex) {
-                this.routerHistory.push({
-                    ...history,
+                const data = {
+                    path: history.path,
+                    meta: history.meta,
                     iconNode: await renderIconStr(history.meta?.icon),
-                });
+                };
+                this.routerHistory.push(data);
             }
         },
         /**

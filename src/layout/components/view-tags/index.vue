@@ -72,15 +72,11 @@ const handleTagClick = (index: number) => {
     window.$router.push(routerHistory.value[index].path);
 };
 // 历史记录变化自动滚动至最底部
-watch(
-    routerHistory,
-    (newVal, oldVal) => {
-        nextTick(() => {
-            viewTagsScrollRef.value?.scrollTo({ left: 99999 });
-        });
-    },
-    { deep: true }
-);
+watch(routerHistory, () => {
+    nextTick(() => {
+        viewTagsScrollRef.value?.scrollTo({ left: 99999 });
+    });
+});
 
 const currentRoute = computed(() => {
     return window.$router.currentRoute.value;
