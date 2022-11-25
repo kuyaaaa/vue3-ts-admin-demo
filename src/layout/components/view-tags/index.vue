@@ -114,6 +114,7 @@ const handleScrollWheel = (e: WheelEvent) => {
 
         > .n-scrollbar-rail.n-scrollbar-rail--horizontal {
             bottom: 1px;
+            overflow: hidden;
         }
     }
 
