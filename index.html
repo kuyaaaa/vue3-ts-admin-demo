@@ -5,10 +5,91 @@
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title><%= title %></title>
-        <link rel="stylesheet" href="./src/assets/styles/reset.css">
+        <link rel="stylesheet" href="./src/assets/styles/reset.css" />
     </head>
     <body>
-        <div id="app"></div>
+        <div id="app">
+            <script>
+                const appEl = document.getElementById("app");
+                const configLocal = window.localStorage.getItem("<%- configKey %>");
+                const themeLocal = window.localStorage.getItem("<%- themeKey %>");
+                const config = configLocal ? JSON.parse(configLocal) : undefined;
+                const theme = themeLocal ? JSON.parse(themeLocal) : undefined;
+
+                const baseColor = theme ? theme.primaryColor : "<%- baseColor %>";
+                const bgColor =
+                    config && config.theme === "dark"
+                        ? "<%- darkBaseColorBg %>"
+                        : "<%- normalBaseColorBg %>";
+                const fontColor =
+                    config && config.theme === "dark"
+                        ? "<%- darkBaseColorFont %>"
+                        : "<%- normalBaseColorFont %>";
+
+                document.body.style = `background-color: ${bgColor}`;
+                appEl.innerHTML = `
+                    <style>
+                        .loading-container {
+                            width: 100vw;
+                            height: 100vh;
+                            overflow: hidden;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: var(--loading-color-bg);
+                        }
+                        .strip-loading {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 200px;
+                        }
+                        .strip-loading li {
+                            --time: calc((var(--line-index) - 1) * 200ms);
+                            border-radius: 4px;
+                            width: 8px;
+                            height: 40px;
+                            background-color: var(--loading-color-base);
+                            animation: beat 1s ease-in-out var(--time) infinite;
+                            list-style-type: none;
+                        }
+                        li + li {
+                            margin-left: 8px;
+                        }
+                        @keyframes beat {
+                            0%,
+                            100% {
+                                transform: scaleY(1);
+                            }
+                            50% {
+                                transform: scaleY(0.5);
+                            }
+                        }
+                        .loading-container > p {
+                            margin-top: 30px;
+                            color: var(--loading-color-font);
+                            font-weight: 700;
+                            font-size: 14px;
+                        }
+                    </style>
+                    <div 
+                        class="loading-container" 
+                        style="--loading-color-bg: ${bgColor}; --loading-color-font: ${fontColor}; --loading-color-base: ${baseColor}"
+                    >
+                        <ul class="strip-loading">
+                            <li style="--line-index: 1"></li>
+                            <li style="--line-index: 2"></li>
+                            <li style="--line-index: 3"></li>
+                            <li style="--line-index: 4"></li>
+                            <li style="--line-index: 5"></li>
+                            <li style="--line-index: 6"></li>
+                        </ul>
+                        <p>资源加载中</p>
+                    </div>
+                `;
+            </script>
+        </div>
         <script type="module" src="/src/main.ts"></script>
     </body>
 </html>

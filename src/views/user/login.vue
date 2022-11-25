@@ -89,10 +89,7 @@ const { config } = storeToRefs(systemStore);
     @include flex-center-main-cross;
     flex-direction: column;
     transition: all 0.3s;
-
-    &.normal {
-        background-image: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%);
-    }
+    background-image: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%);
 
     &.dark {
         background: linear-gradient(to bottom, #323232 0%, #3f3f3f 40%, #1c1c1c 150%),
