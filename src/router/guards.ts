@@ -7,6 +7,7 @@ import useLoginStore from "@/store/modules/login";
 import useHistoryStore from "@/store/modules/history";
 import { TOKEN } from "@/utils/static";
 import { defaultPrimaryColor } from "@/config/theme";
+import { PROJECT_MENU_TITLE } from "@/config/system";
 
 // nprogress配置
 NProgress.configure({
@@ -52,6 +53,9 @@ router.beforeEach(async (to, from, next) => {
         });
         window.$message.error("请先登录再进行操作");
     }
+
+    // 修改标题
+    document.title = `${PROJECT_MENU_TITLE}  ${to.meta?.label ? `- ${to.meta.label}` : ""}`;
 });
 
 router.afterEach(() => {
