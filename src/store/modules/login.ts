@@ -26,14 +26,12 @@ const useLoginStore = defineStore({
             // 临时token
             this[TOKEN] = "1";
             setToken(this.token);
-            const { redirect = "/", query } = window.$router.currentRoute.value.query;
+            const { redirect = "/" } = window.$router.currentRoute.value.query;
             // 获取用户信息
             await this.getUserInfo();
             window.$message.success("登陆成功，正在跳转...");
-            window.$router.push({
-                path: redirect as string,
-                query: query ? JSON.parse(query as string) : undefined,
-            });
+            const redirectUrl = decodeURIComponent(redirect as string);
+            window.$router.push(redirectUrl);
         },
         /** 登出 */
         logout() {

@@ -45,11 +45,10 @@ router.beforeEach(async (to, from, next) => {
     }
     // no token
     else {
-        const redirect = to.path;
-        const query = JSON.stringify(to.query);
+        const redirect = encodeURIComponent(to.fullPath);
         next({
             path: "/login",
-            query: { redirect, query },
+            query: { redirect },
         });
         window.$message.error("请先登录再进行操作");
     }
