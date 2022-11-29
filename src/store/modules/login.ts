@@ -9,11 +9,7 @@ const useLoginStore = defineStore({
     state: () => {
         return {
             [TOKEN]: "",
-            userInfo: {
-                avatar: "",
-                userName: "",
-                signature: "",
-            } as UserInfoType,
+            userInfo: {} as UserInfoType,
         };
     },
     actions: {

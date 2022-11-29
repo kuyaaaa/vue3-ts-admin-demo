@@ -1,6 +1,7 @@
 // 路由守卫
 import NProgress from "nprogress";
 import "@/assets/styles/nprogress.scss";
+import { isEmpty } from "lodash";
 import router from "./index";
 import { getToken } from "@/utils/token";
 import useLoginStore from "@/store/modules/login";
@@ -24,8 +25,6 @@ router.beforeEach(async (to, from, next) => {
     const loginStore = useLoginStore();
     /** token */
     const token = loginStore[TOKEN] || getToken();
-    /** 用户名（用于判断是否获取过用户信息） */
-    const { userName } = loginStore.userInfo;
     /** 是否为白名单 */
     const isWhite = whiteList.some(item => item === to.path);
     if (isWhite) {
@@ -34,7 +33,7 @@ router.beforeEach(async (to, from, next) => {
     // has token
     else if (token) {
         // has token, no userInfo
-        if (!userName) {
+        if (isEmpty(loginStore.userInfo)) {
             await loginStore.getUserInfo();
         }
         // 历史记录存储

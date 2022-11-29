@@ -6,7 +6,7 @@ export interface LoginParams {
 
 /** 用户信息 */
 export interface UserInfoType {
-    avatar: string;
-    userName: string;
-    signature: string;
+    avatar?: string;
+    userName?: string;
+    signature?: string;
 }
