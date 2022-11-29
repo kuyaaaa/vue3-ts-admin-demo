@@ -20,7 +20,9 @@
                             enter-active-class="fade-enter fade-enter-active"
                             leave-active-class="fade-leave fade-leave-active"
                         >
-                            <component :is="Component" />
+                            <keep-alive :include="keepAliveInclude">
+                                <component :is="Component" />
+                            </keep-alive>
                         </transition>
                     </router-view>
                 </n-layout-content>
@@ -32,14 +34,19 @@
 <script lang="ts" setup>
 import { onBeforeUnmount, onMounted, ref } from "vue";
 import { throttle } from "lodash";
+import { storeToRefs } from "pinia";
 import HeaderContent from "./content/header.vue";
 import SiderContent from "./content/sider.vue";
 import useSystemStore from "@/store/modules/system";
+import useHistoryStore from "@/store/modules/history";
 
 const style_content_padding = 20;
 const style_content_height = ref("100vh");
 
 const systemStore = useSystemStore();
+
+const historyStore = useHistoryStore();
+const { keepAliveInclude } = storeToRefs(historyStore);
 
 const headerRef = ref<any>(null);
 const contentRef = ref<any>(null);

@@ -55,6 +55,12 @@ router.beforeEach(async (to, from, next) => {
 
     // 修改标题
     document.title = `${PROJECT_MENU_TITLE}  ${to.meta?.label ? `- ${to.meta.label}` : ""}`;
+
+    // keep-alive include判断
+    if (to.meta?.keepAlive) {
+        const historyStore = useHistoryStore();
+        historyStore.addKeepAliveInclude(to.name as string);
+    }
 });
 
 router.afterEach(() => {

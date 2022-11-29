@@ -21,5 +21,7 @@ declare module "vue-router" {
         outLink?: string;
         /** 是否固定在view-tags下，为true时无法关闭 */
         isAffix?: boolean;
+        /** 是否keepAlive */
+        keepAlive?: boolean;
     }
 }

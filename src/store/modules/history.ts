@@ -15,7 +15,10 @@ const useHistoryStore = defineStore({
     id: "history",
     state: () => {
         return {
+            /** 路由历史记录 */
             routerHistory: [] as routerHistoryItem[],
+            /** keep-alive include字段，所需要keep-alive的路由name数组集合 */
+            keepAliveInclude: [] as string[],
         };
     },
     actions: {
@@ -61,6 +64,12 @@ const useHistoryStore = defineStore({
          */
         clearRouterHistory() {
             this.routerHistory = [];
+        },
+        /** 添加keep-alive include字段 */
+        addKeepAliveInclude(routeName: string) {
+            if (!this.keepAliveInclude.includes(routeName)) {
+                this.keepAliveInclude.push(routeName);
+            }
         },
     },
 });
