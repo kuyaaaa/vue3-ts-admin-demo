@@ -14,18 +14,16 @@
                 embedded
                 class="layout-content-container"
             >
-                <n-layout-content :native-scrollbar="false" embedded class="content-container">
-                    <router-view v-slot="{ Component }">
-                        <transition
-                            enter-active-class="fade-enter fade-enter-active"
-                            leave-active-class="fade-leave fade-leave-active"
-                        >
-                            <keep-alive :include="keepAliveInclude">
-                                <component :is="Component" />
-                            </keep-alive>
-                        </transition>
-                    </router-view>
-                </n-layout-content>
+                <router-view v-slot="{ Component }">
+                    <transition
+                        enter-active-class="fade-enter fade-enter-active"
+                        leave-active-class="fade-leave fade-leave-active"
+                    >
+                        <keep-alive :include="keepAliveInclude">
+                            <component :is="Component" />
+                        </keep-alive>
+                    </transition>
+                </router-view>
             </n-layout-content>
         </n-layout>
     </n-layout>
@@ -88,9 +86,6 @@ onBeforeUnmount(() => {
 
 .layout-content-container {
     height: v-bind(style_content_height);
-}
-
-.content-container {
     padding: v-bind('style_content_padding + "px"');
     box-sizing: border-box;
 }
