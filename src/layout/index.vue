@@ -41,7 +41,7 @@ import useSystemStore from "@/store/modules/system";
 import useHistoryStore from "@/store/modules/history";
 
 const style_content_padding = 20;
-const style_content_height = ref("100vh");
+const style_content_height = ref("100%");
 
 const systemStore = useSystemStore();
 
@@ -55,13 +55,14 @@ const resizeHandler = throttle(() => {
     const headerEl = headerRef.value?.$el as HTMLElement;
     const contentEl = contentRef.value?.$el as HTMLElement;
 
-    systemStore.$patch({
-        headerHeight: headerEl.offsetHeight,
-        contentHeight: contentEl.offsetHeight - style_content_padding * 2,
-        contentWidth: contentEl.offsetWidth - style_content_padding * 2,
-    });
+    const headerHeight = headerEl.offsetHeight;
+    const contentHeight = window.innerHeight - headerHeight;
+    const contentBorderBoxHeight = contentHeight - style_content_padding * 2;
+    const contentWidth = contentEl.offsetWidth - style_content_padding * 2;
 
-    style_content_height.value = `${window.innerHeight - systemStore.headerHeight}px`;
+    style_content_height.value = `${contentHeight}px`;
+
+    systemStore.$patch({ headerHeight, contentHeight, contentBorderBoxHeight, contentWidth });
 }, 200);
 
 const handleSiderCollapse = (collapsed: boolean) => {

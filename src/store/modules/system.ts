@@ -11,8 +11,10 @@ const useSystemStore = defineStore({
         return {
             /** 头部容器高度 */
             headerHeight: 0,
-            /** 主内容容器高度（不含padding以外层） */
+            /** 主内容容器高度 */
             contentHeight: 0,
+            /** 主内容容器高度（不含padding以外层，border-box） */
+            contentBorderBoxHeight: 0,
             /** 主内容容器宽度（不含padding以外层） */
             contentWidth: 0,
             /** 设置相关 */
