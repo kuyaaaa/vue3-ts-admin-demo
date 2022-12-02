@@ -35,6 +35,7 @@
 import { onBeforeUnmount, onMounted, ref } from "vue";
 import { throttle } from "lodash";
 import { storeToRefs } from "pinia";
+import { NLayoutContent, NLayoutHeader } from "naive-ui";
 import HeaderContent from "./content/header.vue";
 import SiderContent from "./content/sider.vue";
 import useSystemStore from "@/store/modules/system";
@@ -48,12 +49,12 @@ const systemStore = useSystemStore();
 const historyStore = useHistoryStore();
 const { keepAliveInclude } = storeToRefs(historyStore);
 
-const headerRef = ref<any>(null);
-const contentRef = ref<any>(null);
+const headerRef = ref<InstanceType<typeof NLayoutHeader> | null>(null);
+const contentRef = ref<InstanceType<typeof NLayoutContent> | null>(null);
 
 const resizeHandler = throttle(() => {
-    const headerEl = headerRef.value?.$el as HTMLElement;
-    const contentEl = contentRef.value?.$el as HTMLElement;
+    const headerEl: HTMLElement = headerRef.value?.$el;
+    const contentEl: HTMLElement = contentRef.value?.$el;
 
     const headerHeight = headerEl.offsetHeight;
     const contentHeight = window.innerHeight - headerHeight;
