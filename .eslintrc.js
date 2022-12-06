@@ -7,7 +7,7 @@ module.exports = {
         "vue/setup-compiler-macros": true,
     },
     parserOptions: {
-        ecmaVersion: 13,
+        ecmaVersion: "latest",
         parser: "@typescript-eslint/parser",
         sourceType: "module",
     },
@@ -17,14 +17,13 @@ module.exports = {
         "plugin:prettier/recommended",
         "prettier",
     ],
-    plugins: ["prettier"],
+    plugins: ["@typescript-eslint", "prettier"],
     rules: {
         "prettier/prettier": "error",
-        camelcase: ["error", { allow: ["^style_"] }],
+        camelcase: "off",
         "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
         "no-console": "off",
         "no-else-return": "off",
-        "no-unused-vars": ["warn", { varsIgnorePattern: "Window", args: "none" }],
         "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
         "no-continue": "off",
         "no-bitwise": "off",
@@ -38,5 +37,12 @@ module.exports = {
         "import/prefer-default-export": "off",
         "vue/multi-word-component-names": "off",
         "no-await-in-loop": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
+            { varsIgnorePattern: "Window", args: "none" },
+        ],
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": "error",
     },
 };
