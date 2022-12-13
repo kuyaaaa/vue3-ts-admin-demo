@@ -12,7 +12,13 @@
         @expand="collapsed = false"
         @update:collapsed="(collapsed: boolean) => emit('collapsed', collapsed)"
     >
-        <n-space :wrap="false" class="logo-container" align="center" justify="center">
+        <n-space
+            :wrap="false"
+            :wrap-item="false"
+            class="logo-container"
+            align="center"
+            justify="center"
+        >
             <n-image :width="collapsedIconSize" :src="PROJECT_MENU_LOGO" preview-disabled />
             <n-text v-if="!collapsed" class="text-nowrap">{{ PROJECT_MENU_TITLE }}</n-text>
         </n-space>
@@ -28,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, ref } from "vue";
 import { storeToRefs } from "pinia";
 import useMenuStore from "@/store/modules/menu";
 import { PROJECT_MENU_TITLE, PROJECT_MENU_LOGO } from "@/config/system";
@@ -44,13 +50,7 @@ const { list: menuOptions } = storeToRefs(menuStore);
 // 部分配置
 const siderWidth = 240;
 const collapsedWidth = 64;
-const collapsedIconSize = 22;
-
-onMounted(async () => {
-    if (!menuStore.list.length) {
-        await menuStore.createMenuList();
-    }
-});
+const collapsedIconSize = 20;
 
 /** 当前路由对应的菜单name */
 const currentMenu = computed(() => {
@@ -69,7 +69,7 @@ const collapsed = ref(false);
 }
 
 .divider-style {
-    margin: 5px 0;
+    margin: 0;
     padding: 0 10px;
 }
 </style>
