@@ -9,6 +9,7 @@ import useHistoryStore from "@/store/modules/history";
 import { TOKEN } from "@/utils/static";
 import { defaultPrimaryColor } from "@/config/theme";
 import { PROJECT_MENU_TITLE } from "@/config/system";
+import useMenuStore from "@/store/modules/menu";
 
 // nprogress配置
 NProgress.configure({
@@ -36,6 +37,13 @@ router.beforeEach(async (to, from, next) => {
         if (isEmpty(loginStore.userInfo)) {
             await loginStore.getUserInfo();
         }
+
+        // 创建菜单
+        const menuStore = useMenuStore();
+        if (!menuStore.list.length && !isEmpty(loginStore.userInfo)) {
+            menuStore.createMenuList();
+        }
+
         // 历史记录存储
         const historyStore = useHistoryStore();
         historyStore.setRouterHistory(to);
