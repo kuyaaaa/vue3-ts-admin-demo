@@ -6,6 +6,7 @@ import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
 import { createHtmlPlugin } from "vite-plugin-html";
 import { visualizer } from "rollup-plugin-visualizer";
 import viteCompression from "vite-plugin-compression";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 import { PROJECT_TITLE } from "./src/config/system";
 import { SYSTEM_CONFIG, SYSTEM_THEME_COMMON } from "./src/utils/static";
 import { defaultThemeCommonConfig } from "./src/config/theme";
@@ -45,6 +46,19 @@ export default ({ mode }) =>
             visualizer({
                 open: Boolean(loadEnv(mode, process.cwd()).VITE_BUILD_PREVIEW),
                 filename: resolve(__dirname, "build/preview.html"),
+            }),
+            // 静态资源文件打包
+            viteStaticCopy({
+                targets: [
+                    {
+                        // 将assets下的静态资源进行复制，让打包后的页面也能获取到对应的资源
+                        // 这里将images图片目录复制，如果需要添加新的src/assets/*静态资源
+                        // 比如使用了src/assets/svg，就在src中添加一项"src/assets/svg"
+                        // 页面中正常使用绝对路径调取静态资源
+                        src: ["src/assets/images"],
+                        dest: "src/assets",
+                    },
+                ],
             }),
         ],
         define: {
