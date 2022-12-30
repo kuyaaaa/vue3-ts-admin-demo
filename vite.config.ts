@@ -5,6 +5,7 @@ import Components from "unplugin-vue-components/vite";
 import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
 import { createHtmlPlugin } from "vite-plugin-html";
 import { visualizer } from "rollup-plugin-visualizer";
+import viteCompression from "vite-plugin-compression";
 import { PROJECT_TITLE } from "./src/config/system";
 import { SYSTEM_CONFIG, SYSTEM_THEME_COMMON } from "./src/utils/static";
 import { defaultThemeCommonConfig } from "./src/config/theme";
@@ -38,6 +39,8 @@ export default ({ mode }) =>
                 },
             }),
             splitVendorChunkPlugin(),
+            // gzip
+            viteCompression(),
             // 打包大小预览
             visualizer({
                 open: Boolean(loadEnv(mode, process.cwd()).VITE_BUILD_PREVIEW),
