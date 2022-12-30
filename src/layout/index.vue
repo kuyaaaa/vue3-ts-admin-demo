@@ -33,7 +33,7 @@
 
 <script lang="ts" setup>
 import { onBeforeUnmount, onMounted, ref } from "vue";
-import { throttle } from "lodash";
+import { throttle } from "lodash-es";
 import { storeToRefs } from "pinia";
 import { NLayoutContent, NLayoutHeader } from "naive-ui";
 import HeaderContent from "./content/header.vue";

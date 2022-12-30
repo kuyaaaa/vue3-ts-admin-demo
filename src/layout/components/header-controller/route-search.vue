@@ -17,7 +17,7 @@
 import { ref } from "vue";
 import type { SelectOption } from "naive-ui";
 import type { RouteRecordRaw } from "vue-router";
-import { cloneDeep, replace, debounce } from "lodash";
+import { cloneDeep, replace, debounce } from "lodash-es";
 
 const loading = ref(false);
 /** 菜单列表的路径分隔符 */

@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { cloneDeep } from "lodash";
+import { cloneDeep } from "lodash-es";
 import { LoginParams, UserInfoType } from "@/types/user";
 import { TOKEN } from "@/utils/static";
 import { removeToken, setToken } from "@/utils/token";

@@ -70,7 +70,7 @@ export default ({ mode }) =>
                     assetFileNames: "assets/[ext]/[name].[hash].[ext]",
                     manualChunks: {
                         "vue-manifest": ["vue", "vue-router", "axios", "pinia"],
-                        lodash: ["lodash"],
+                        lodash: ["lodash", "lodash-es"],
                         "naive-ui-manifest": [
                             "vdirs",
                             "vooks",

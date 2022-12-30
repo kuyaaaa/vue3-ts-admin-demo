@@ -1,7 +1,7 @@
 // 路由守卫
 import NProgress from "nprogress";
 import "@/assets/styles/nprogress.scss";
-import { isEmpty } from "lodash";
+import { isEmpty } from "lodash-es";
 import router from "./index";
 import { getToken } from "@/utils/token";
 import useLoginStore from "@/store/modules/login";
