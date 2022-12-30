@@ -61,4 +61,32 @@ export default ({ mode }) =>
                 },
             },
         },
+        build: {
+            chunkSizeWarningLimit: 1500,
+            rollupOptions: {
+                output: {
+                    entryFileNames: "assets/js/index.[hash].js",
+                    chunkFileNames: "assets/js/[name].[hash].js",
+                    assetFileNames: "assets/[ext]/[name].[hash].[ext]",
+                    manualChunks: {
+                        "vue-manifest": ["vue", "vue-router", "axios", "pinia"],
+                        lodash: ["lodash"],
+                        "naive-ui-manifest": [
+                            "vdirs",
+                            "vooks",
+                            "evtd",
+                            "css-render",
+                            "seemly",
+                            "treemate",
+                            "date-fns",
+                            "async-validator",
+                            "vueuc",
+                        ],
+                        "naive-ui": ["naive-ui"],
+                        vicons: ["@vicons/ionicons5"],
+                        "highlight-js": ["highlight.js"],
+                    },
+                },
+            },
+        },
     });
