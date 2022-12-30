@@ -5,6 +5,7 @@
     "scripts": {
         "dev": "vite --mode=development",
         "build": "vite build --mode=production",
+        "build:preview": "vite build --mode=preview && rimraf dist",
         "preview": "vite preview"
     },
     "dependencies": {
@@ -34,6 +35,8 @@
         "eslint-plugin-prettier": "^4.0.0",
         "eslint-plugin-vue": "^8.6.0",
         "prettier": "^2.6.2",
+        "rimraf": "^3.0.2",
+        "rollup-plugin-visualizer": "^5.8.3",
         "sass": "^1.50.0",
         "sass-loader": "^12.6.0",
         "typescript": "^4.5.4",

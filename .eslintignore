@@ -2,3 +2,6 @@
 
 index.html
 components.d.ts
+
+# package build preview page
+build/preview.html
