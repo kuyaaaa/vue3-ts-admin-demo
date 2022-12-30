@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig, loadEnv, splitVendorChunkPlugin } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
 import Components from "unplugin-vue-components/vite";
@@ -37,6 +37,7 @@ export default ({ mode }) =>
                     },
                 },
             }),
+            splitVendorChunkPlugin(),
             // 打包大小预览
             visualizer({
                 open: Boolean(loadEnv(mode, process.cwd()).VITE_BUILD_PREVIEW),
