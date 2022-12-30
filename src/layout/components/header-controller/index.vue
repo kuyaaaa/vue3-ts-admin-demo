@@ -1,5 +1,5 @@
 <template>
-    <n-space align="center" size="small">
+    <n-space align="center" size="small" :wrap-item="false" :wrap="false">
         <route-search />
         <theme-switch />
         <fullscreen-btn />
