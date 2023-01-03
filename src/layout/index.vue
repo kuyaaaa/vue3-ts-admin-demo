@@ -16,10 +16,7 @@
             >
                 <div class="layout-content-main">
                     <router-view v-slot="{ Component }">
-                        <transition
-                            enter-active-class="fade-enter fade-enter-active"
-                            leave-active-class="fade-leave fade-leave-active"
-                        >
+                        <transition name="fade" mode="out-in" appear>
                             <keep-alive :include="keepAliveInclude">
                                 <component :is="Component" />
                             </keep-alive>
@@ -94,17 +91,13 @@ onBeforeUnmount(() => {
     }
 }
 
-.fade-enter {
-    opacity: 0;
-}
-.fade-leave {
-    opacity: 1;
-}
-.fade-enter-active {
-    transition: all 0.3s;
-}
+.fade-enter-active,
 .fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
     opacity: 0;
-    transition: all 0.3s;
 }
 </style>
