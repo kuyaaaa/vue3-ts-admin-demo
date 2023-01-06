@@ -43,7 +43,6 @@ export default ({ mode }) =>
             // gzip
             viteCompression({
                 threshold: 80 * 1024,
-                deleteOriginFile: true,
             }),
             // 打包大小预览
             visualizer({
