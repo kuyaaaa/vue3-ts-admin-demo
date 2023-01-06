@@ -41,7 +41,10 @@ export default ({ mode }) =>
             }),
             splitVendorChunkPlugin(),
             // gzip
-            viteCompression(),
+            viteCompression({
+                threshold: 80 * 1024,
+                deleteOriginFile: true,
+            }),
             // 打包大小预览
             visualizer({
                 open: Boolean(loadEnv(mode, process.cwd()).VITE_BUILD_PREVIEW),
