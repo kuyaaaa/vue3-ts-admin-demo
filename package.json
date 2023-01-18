@@ -2,6 +2,9 @@
     "name": "admin-demo",
     "private": true,
     "version": "0.0.0",
+    "engines": {
+        "node": ">=16.0.0"
+    },
     "scripts": {
         "dev": "vite --mode=development",
         "build": "vite build --mode=production",
