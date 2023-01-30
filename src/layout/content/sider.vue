@@ -3,7 +3,6 @@
         collapse-mode="width"
         :collapsed-width="collapsedWidth"
         :collapsed="collapsed"
-        :width="siderWidth"
         :native-scrollbar="false"
         class="layout-sider"
         bordered
@@ -18,6 +17,8 @@
             class="logo-container"
             align="center"
             justify="center"
+            title="返回首页"
+            @click="handleJumpHome"
         >
             <n-image :width="collapsedIconSize" :src="PROJECT_MENU_LOGO" preview-disabled />
             <n-text v-if="!collapsed" class="text-nowrap">{{ PROJECT_MENU_TITLE }}</n-text>
@@ -48,7 +49,6 @@ const menuStore = useMenuStore();
 const { list: menuOptions } = storeToRefs(menuStore);
 
 // 部分配置
-const siderWidth = 240;
 const collapsedWidth = 64;
 const collapsedIconSize = 20;
 
@@ -58,6 +58,10 @@ const currentMenu = computed(() => {
 });
 
 const collapsed = ref(false);
+
+const handleJumpHome = () => {
+    window.$router.push("/");
+};
 </script>
 
 <style lang="scss" scoped>
@@ -66,6 +70,7 @@ const collapsed = ref(false);
     padding: 10px 0;
     font-size: 22px;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .divider-style {
