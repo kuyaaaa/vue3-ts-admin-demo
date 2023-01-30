@@ -63,9 +63,9 @@ export const defaultThemeCommonConfig = {
 /** 颜色字段集合 hover、pressed、suppl等 */
 export const colorKeyList = [
     { name: "基础颜色", key: "Color" },
-    { name: "hover颜色", key: "ColorHover" },
-    { name: "pressed颜色", key: "ColorPressed" },
-    { name: "suppl颜色", key: "ColorSuppl" },
+    { name: "悬浮颜色", key: "ColorHover" },
+    { name: "按下颜色", key: "ColorPressed" },
+    { name: "深色模式补充颜色", key: "ColorSuppl" },
 ];
 
 /** 颜色类型集合 primary、info、success等 */
