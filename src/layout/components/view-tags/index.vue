@@ -8,11 +8,7 @@
             @wheel="handleScrollWheel"
         >
             <n-space align="center" :wrap="false">
-                <div
-                    v-for="(item, index) in routerHistory"
-                    :id="`view-tag-${index}`"
-                    :key="item.path"
-                >
+                <div v-for="(item, index) in tagList" :id="`view-tag-${index}`" :key="item.path">
                     <n-tag
                         :type="currentRoute.path === item.path ? 'primary' : 'default'"
                         :bordered="!(currentRoute.path === item.path)"
@@ -32,13 +28,14 @@
 </template>
 
 <script lang="ts" setup>
-import { storeToRefs } from "pinia";
 import { computed, ref, watch, nextTick } from "vue";
 import type { ScrollbarInst } from "naive-ui";
 import useHistoryStore from "@/store/modules/history";
 
 const historyStore = useHistoryStore();
-const { routerHistory } = storeToRefs(historyStore);
+
+/** 标签列表  剔除空name字段页面路由 */
+const tagList = computed(() => historyStore.routerHistory.filter(item => item.name));
 
 const handleTagClose = (index: number) => {
     historyStore.removeRouterHistory(index);
@@ -69,10 +66,10 @@ const getTagMovePosition = (index: number) => {
 
 const viewTagsScrollRef = ref<ScrollbarInst | null>(null);
 const handleTagClick = (index: number) => {
-    window.$router.push(routerHistory.value[index].path);
+    window.$router.push(tagList.value[index].path);
 };
 // 历史记录变化自动滚动至最底部
-watch(routerHistory, () => {
+watch(tagList, () => {
     nextTick(() => {
         viewTagsScrollRef.value?.scrollTo({ left: 99999 });
     });
@@ -84,7 +81,7 @@ const currentRoute = computed(() => {
 watch(
     () => currentRoute.value.path,
     val => {
-        const index = routerHistory.value.findIndex(item => item.path === val);
+        const index = tagList.value.findIndex(item => item.path === val);
         const movePosition = getTagMovePosition(index);
         viewTagsScrollRef.value?.scrollBy({ left: movePosition });
     }

@@ -1,13 +1,11 @@
 // 路由历史记录
 import { defineStore } from "pinia";
-import type { RouteLocationNormalized, RouteMeta } from "vue-router";
+import type { RouteLocationNormalized } from "vue-router";
 import type { VNode } from "vue";
 import { renderIconStr } from "@/utils/render";
 
 /** 路由历史记录数组元素类型 */
-export interface routerHistoryItem {
-    meta: RouteMeta;
-    path: string;
+export interface routerHistoryItem extends RouteLocationNormalized {
     iconNode?: () => VNode;
 }
 
@@ -26,14 +24,15 @@ const useHistoryStore = defineStore({
          * 存储路由历史记录
          */
         async setRouterHistory(history: RouteLocationNormalized) {
-            const hasIndex = this.routerHistory.findIndex(item => item.path === history.path);
-            if (!~hasIndex) {
-                const data = {
-                    path: history.path,
-                    meta: history.meta,
-                    iconNode: await renderIconStr(history.meta?.icon),
-                };
+            const index = this.routerHistory.findIndex(item => item.path === history.path);
+            const data = {
+                ...history,
+                iconNode: await renderIconStr(history.meta?.icon),
+            };
+            if (!~index) {
                 this.routerHistory.push(data);
+            } else {
+                this.routerHistory[index] = data;
             }
         },
         /**
@@ -46,7 +45,7 @@ const useHistoryStore = defineStore({
             if (curPath === this.routerHistory[index].path) {
                 // 少于等于一个元素，删除后列表为空，跳转到首页
                 if (this.routerHistory.length <= 1) {
-                    window.$router.push("/home");
+                    window.$router.push("/");
                 }
                 // 如果为最后一个元素，删除后跳转到前一个元素页面
                 else if (index === finalIndex) {
