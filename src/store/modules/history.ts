@@ -1,7 +1,7 @@
 // 路由历史记录
 import { defineStore } from "pinia";
-import type { RouteLocationNormalized } from "vue-router";
-import type { VNode } from "vue";
+import { RouteLocationNormalized } from "vue-router";
+import { VNode } from "vue";
 import { renderIconStr } from "@/utils/render";
 
 /** 路由历史记录数组元素类型 */

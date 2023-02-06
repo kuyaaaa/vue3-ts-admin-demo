@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { FormInst } from "naive-ui";
+import { FormInst } from "naive-ui";
 import { Person, LockClosed, LogIn as loginIcon } from "@vicons/ionicons5";
 import { ref } from "vue";
 import { storeToRefs } from "pinia";

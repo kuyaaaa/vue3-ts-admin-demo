@@ -1,4 +1,4 @@
-import type { Type as ButtonType } from "naive-ui/lib/button/src/interface";
+import { ButtonProps } from "naive-ui";
 
 /** primary默认颜色 */
 export const defaultPrimaryColor = {
@@ -69,4 +69,10 @@ export const colorKeyList = [
 ];
 
 /** 颜色类型集合 primary、info、success等 */
-export const colorTypeList: ButtonType[] = ["primary", "info", "success", "warning", "error"];
+export const colorTypeList: ButtonProps["type"][] = [
+    "primary",
+    "info",
+    "success",
+    "warning",
+    "error",
+];

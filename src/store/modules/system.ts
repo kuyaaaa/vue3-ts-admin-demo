@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import type { GlobalThemeOverrides } from "naive-ui";
+import { GlobalThemeOverrides } from "naive-ui";
 import NProgress from "nprogress";
 import { SYSTEM_CONFIG, SYSTEM_THEME_COMMON } from "@/utils/static";
 import { SystemConfig } from "@/types/config";

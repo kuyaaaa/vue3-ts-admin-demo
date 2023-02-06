@@ -1,7 +1,7 @@
 // 菜单列表
 import { defineStore } from "pinia";
-import type { RouteRecordRaw } from "vue-router";
-import type { MenuOption } from "naive-ui";
+import { RouteRecordRaw } from "vue-router";
+import { MenuOption } from "naive-ui";
 import { renderIconStr, renderRouterLink, renderATag } from "@/utils/render";
 import { routes } from "@/router";
 

@@ -41,7 +41,7 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
-import type { FormInst, UploadFileInfo } from "naive-ui";
+import { FormInst, UploadFileInfo } from "naive-ui";
 import useLoginStore from "@/store/modules/login";
 
 const loginStore = useLoginStore();

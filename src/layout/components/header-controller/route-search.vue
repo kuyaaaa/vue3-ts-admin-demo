@@ -15,8 +15,8 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import type { SelectOption } from "naive-ui";
-import type { RouteRecordRaw } from "vue-router";
+import { SelectOption } from "naive-ui";
+import { RouteRecordRaw } from "vue-router";
 import { cloneDeep, replace, debounce } from "lodash-es";
 
 const loading = ref(false);

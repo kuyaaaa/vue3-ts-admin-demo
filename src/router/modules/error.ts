@@ -1,4 +1,4 @@
-import type { RouteRecordRaw } from "vue-router";
+import { RouteRecordRaw } from "vue-router";
 import Layout from "@/layout/index.vue";
 
 const errorRoutes: RouteRecordRaw[] = [

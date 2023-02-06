@@ -55,8 +55,8 @@
 
 <script lang="ts" setup>
 import { h, reactive, ref } from "vue";
-import { NButton } from "naive-ui";
-import type { PaginationProps, DataTableColumns } from "naive-ui";
+import { NButton, PaginationProps, DataTableColumns } from "naive-ui";
+
 import {
     Search as SearchIcon,
     Add as AddIcon,

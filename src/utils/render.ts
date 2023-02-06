@@ -1,8 +1,6 @@
 // 渲染组件相关函数
-import { RouterLink } from "vue-router";
-import { h, Component } from "vue";
-import type { AnchorHTMLAttributes } from "vue";
-import type { RouteRecordName } from "vue-router";
+import { RouterLink, RouteRecordName } from "vue-router";
+import { h, Component, AnchorHTMLAttributes } from "vue";
 import { NIcon } from "naive-ui";
 
 /** 渲染图标组件方法（不传入参数返回undefined） */
