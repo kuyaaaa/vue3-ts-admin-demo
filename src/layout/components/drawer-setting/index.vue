@@ -3,7 +3,7 @@
         <n-drawer-content title="系统设置" :native-scrollbar="false" closable>
             <n-config-provider :theme-overrides="{ common: config }">
                 <n-divider title-placement="left">主题样式</n-divider>
-                <n-collapse :default-expanded-names="[colorTypeList[0]]">
+                <n-collapse :default-expanded-names="[colorTypeList[0] || '']">
                     <n-collapse-item
                         v-for="colorType in colorTypeList"
                         :key="colorType"
