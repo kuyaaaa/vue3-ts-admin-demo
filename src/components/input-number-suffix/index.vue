@@ -4,7 +4,9 @@
         :value="Number(inputValue)"
         :on-update:value="
             input => {
-                inputValue = input ? `${input}${props.suffix}` : String($attrs.min) || '';
+                inputValue = input
+                    ? `${input}${props.suffix}`
+                    : `${String($attrs.min || 0)}${props.suffix}` || '';
             }
         "
     >
