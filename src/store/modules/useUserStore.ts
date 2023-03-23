@@ -1,10 +1,9 @@
-import { defineStore } from "pinia";
 import { cloneDeep } from "lodash-es";
 import { LoginParams, UserInfoType } from "@/types/user";
 import { TOKEN } from "@/utils/static";
 import { removeToken, setToken } from "@/utils/token";
 
-const useLoginStore = defineStore({
+const useUserStore = defineStore({
     id: "login",
     state: () => {
         return {
@@ -63,4 +62,4 @@ const useLoginStore = defineStore({
     },
 });
 
-export default useLoginStore;
+export default useUserStore;

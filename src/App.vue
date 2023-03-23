@@ -16,14 +16,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import { zhCN, dateZhCN, darkTheme } from "naive-ui";
 import hljs from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";
 import { isEmpty } from "lodash-es";
-import { storeToRefs } from "pinia";
 import GlobalContainer from "@/layout/global.vue";
-import useSystemStore from "@/store/modules/system";
 
 hljs.registerLanguage("javascript", javascript);
 

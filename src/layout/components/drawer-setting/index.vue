@@ -114,9 +114,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
 import { cloneDeep } from "lodash-es";
-import useSystemStore from "@/store/modules/system";
 import { defaultThemeCommonConfig, colorKeyList, colorTypeList } from "@/config/theme";
 
 const props = defineProps<{ show: boolean }>();

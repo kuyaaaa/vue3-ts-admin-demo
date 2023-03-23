@@ -29,11 +29,9 @@
 </template>
 
 <script lang="ts" setup>
-import { storeToRefs } from "pinia";
 import { NLayoutContent, NLayoutHeader } from "naive-ui";
 import HeaderContent from "./content/header.vue";
 import SiderContent from "./content/sider.vue";
-import useHistoryStore from "@/store/modules/history";
 import useResizeHook from "@/hooks/resize";
 
 const historyStore = useHistoryStore();

@@ -16,6 +16,7 @@ module.exports = {
         "airbnb-base",
         "plugin:prettier/recommended",
         "prettier",
+        "./.eslintrc-auto-import.json",
     ],
     plugins: ["@typescript-eslint", "prettier"],
     rules: {

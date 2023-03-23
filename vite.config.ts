@@ -7,6 +7,7 @@ import { createHtmlPlugin } from "vite-plugin-html";
 import { visualizer } from "rollup-plugin-visualizer";
 import viteCompression from "vite-plugin-compression";
 import { viteStaticCopy } from "vite-plugin-static-copy";
+import AutoImport from "unplugin-auto-import/vite";
 import { PROJECT_TITLE } from "./src/config/system";
 import { SYSTEM_CONFIG, SYSTEM_THEME_COMMON } from "./src/utils/static";
 import { defaultThemeCommonConfig } from "./src/config/theme";
@@ -16,6 +17,13 @@ export default ({ mode }) =>
     defineConfig({
         plugins: [
             vue(),
+            AutoImport({
+                imports: ["vue", "pinia"],
+                dirs: ["./src/store/modules"],
+                eslintrc: {
+                    enabled: true,
+                },
+            }),
             Components({
                 resolvers: [NaiveUiResolver()],
             }),

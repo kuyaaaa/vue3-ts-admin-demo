@@ -40,11 +40,9 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
 import { FormInst, UploadFileInfo } from "naive-ui";
-import useLoginStore from "@/store/modules/login";
 
-const loginStore = useLoginStore();
+const loginStore = useUserStore();
 const formData = ref(loginStore.userInfo);
 
 onMounted(async () => {

@@ -11,9 +11,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from "vue";
-import useSystemStore from "@/store/modules/system";
-
 const systemStore = useSystemStore();
 
 // 主题切换按钮

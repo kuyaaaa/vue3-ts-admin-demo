@@ -28,9 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch, nextTick } from "vue";
 import { ScrollbarInst } from "naive-ui";
-import useHistoryStore from "@/store/modules/history";
 
 const historyStore = useHistoryStore();
 

@@ -13,7 +13,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref } from "vue";
 import screenfull from "screenfull";
 import { Expand as ExpandIcon, Contract as ContractIcon } from "@vicons/ionicons5";
 

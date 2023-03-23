@@ -1,5 +1,4 @@
 // 路由历史记录
-import { defineStore } from "pinia";
 import { RouteLocationNormalized } from "vue-router";
 import { VNode } from "vue";
 import { renderIconStr } from "@/utils/render";

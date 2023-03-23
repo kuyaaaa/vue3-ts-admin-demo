@@ -1,7 +1,6 @@
 import { throttle } from "lodash-es";
 import { NLayoutContent, NLayoutHeader } from "naive-ui";
-import { onBeforeUnmount, onMounted, ref } from "vue";
-import useSystemStore from "@/store/modules/system";
+import useSystemStore from "@/store/modules/useSystemStore";
 
 export default ({
     contentPadding,

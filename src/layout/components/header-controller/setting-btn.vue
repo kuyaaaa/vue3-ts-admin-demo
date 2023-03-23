@@ -14,7 +14,6 @@
 
 <script lang="ts" setup>
 import { SettingsOutline as SettingIcon } from "@vicons/ionicons5";
-import { ref } from "vue";
 import DrawerSetting from "../drawer-setting/index.vue";
 
 const show = ref(false);

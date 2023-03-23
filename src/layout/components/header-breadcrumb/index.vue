@@ -8,7 +8,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from "vue";
 import { renderIconStr } from "@/utils/render";
 
 const breadcrumbList = ref<any[]>([]);

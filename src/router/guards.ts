@@ -4,12 +4,12 @@ import "@/assets/styles/nprogress.scss";
 import { isEmpty } from "lodash-es";
 import router from "./index";
 import { getToken } from "@/utils/token";
-import useLoginStore from "@/store/modules/login";
-import useHistoryStore from "@/store/modules/history";
+import useUserStore from "@/store/modules/useUserStore";
+import useHistoryStore from "@/store/modules/useHistoryStore";
 import { TOKEN } from "@/utils/static";
 import { defaultPrimaryColor } from "@/config/theme";
 import { PROJECT_MENU_TITLE } from "@/config/system";
-import useMenuStore from "@/store/modules/menu";
+import useMenuStore from "@/store/modules/useMenuStore";
 
 // nprogress配置
 NProgress.configure({
@@ -23,7 +23,7 @@ const whiteList = ["/login", "/404", "/403"];
 router.beforeEach(async (to, from, next) => {
     NProgress.start();
 
-    const loginStore = useLoginStore();
+    const loginStore = useUserStore();
     /** token */
     const token = loginStore[TOKEN] || getToken();
     /** 是否为白名单 */

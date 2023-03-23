@@ -46,11 +46,7 @@
 <script lang="ts" setup>
 import { FormInst } from "naive-ui";
 import { Person, LockClosed, LogIn as loginIcon } from "@vicons/ionicons5";
-import { ref } from "vue";
-import { storeToRefs } from "pinia";
 import { LoginParams } from "@/types/user";
-import useLoginStore from "@/store/modules/login";
-import useSystemStore from "@/store/modules/system";
 import { PROJECT_TITLE } from "@/config/system";
 
 const formRef = ref<FormInst | null>(null);
@@ -67,7 +63,7 @@ const rules = ref({
     password: { required: true, message: "请输入密码", trigger: "blur" },
 });
 
-const loginStore = useLoginStore();
+const loginStore = useUserStore();
 
 const handleLogin = (e: MouseEvent) => {
     e.preventDefault();

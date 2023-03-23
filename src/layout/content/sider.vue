@@ -35,9 +35,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from "vue";
-import { storeToRefs } from "pinia";
-import useMenuStore from "@/store/modules/menu";
 import { PROJECT_MENU_TITLE, PROJECT_MENU_LOGO } from "@/config/system";
 
 const emit = defineEmits<{

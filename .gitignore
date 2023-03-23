@@ -26,3 +26,7 @@ components.d.ts
 
 # package build preview page
 build/preview.html
+
+# auto import
+auto-imports.d.ts
+.eslintrc-auto-import.json

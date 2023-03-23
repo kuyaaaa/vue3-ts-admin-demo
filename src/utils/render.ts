@@ -1,7 +1,7 @@
 // 渲染组件相关函数
 import { RouterLink, RouteRecordName } from "vue-router";
-import { h, Component, AnchorHTMLAttributes } from "vue";
 import { NIcon } from "naive-ui";
+import { AnchorHTMLAttributes } from "vue";
 
 /** 渲染图标组件方法（不传入参数返回undefined） */
 export const renderIcon = (icon?: Component) => {

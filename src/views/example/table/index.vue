@@ -54,7 +54,6 @@
 </template>
 
 <script lang="ts" setup>
-import { h, reactive, ref } from "vue";
 import { NButton, PaginationProps, DataTableColumns } from "naive-ui";
 
 import {

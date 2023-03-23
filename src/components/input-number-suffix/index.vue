@@ -27,7 +27,6 @@
  * @param   {string}    value   v-model:value的值
  * @param   {string}    suffix  后缀名，example: 需要获得"15元"，此属性则为"元"
  */
-import { computed } from "vue";
 
 const props = defineProps<{
     value?: string;
