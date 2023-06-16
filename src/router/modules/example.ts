@@ -28,6 +28,12 @@ const userRoutes: RouteRecordRaw[] = [
                 component: () => import("@/views/example/form.vue"),
                 meta: { label: "表单", icon: "DocumentTextOutline" },
             },
+            {
+                path: "rich-text",
+                name: "exampleRichText",
+                component: () => import("@/views/example/rich-text.vue"),
+                meta: { label: "富文本编辑器", icon: "NewspaperOutline" },
+            },
         ],
     },
     // 单级菜单
