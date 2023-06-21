@@ -1,5 +1,9 @@
-import { UploadApiRes } from "@/types/api/upload";
-
+/** 上传接口返回类型定义 */
+export type UploadApiRes = {
+    ok: boolean;
+    msg: string;
+    data: { uri: string; key: string };
+};
 /** 上传insertFn定义 */
 export type InsertFnType = (url: string, alt?: string, href?: string) => void;
 
